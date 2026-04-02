@@ -1,0 +1,24 @@
+---
+import "../styles/global.css";
+import Navbar from "../components/Navbar.astro";
+
+const { title } = Astro.props;
+const margin = "px-64"; // edit this further by specifying different values for different screen sizes
+---
+
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+        <link rel="icon" href="/favicon.ico" />
+        <meta name="viewport" content="width=device-width" />
+        <meta name="generator" content={Astro.generator} />
+        <title>{title}</title>
+    </head>
+    <body class="bg-bg min-h-screen">
+        <Navbar margin={margin} />
+        <div class={margin}>
+            <slot />
+        </div>
+    </body>
+</html>
