@@ -1,17 +1,27 @@
 ---
-
+import "../styles/global.css";
 ---
 
 <html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
+    <head>
+        <meta charset="utf-8" />
+        <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+        <link rel="icon" href="/favicon.ico" />
+        <meta name="viewport" content="width=device-width" />
+        <meta name="generator" content={Astro.generator} />
+        <title>Astro</title>
+    </head>
+    <body>
+        <div class="bg-bg min-h-screen p-4">
+            <h1 class="text-text text-2xl">Kyle Carey</h1>
+            <h1 class="text-primary text-2xl">Primary Accent</h1>
+            <h1 class="text-secondary text-2xl">Secondary Accent</h1>
+            <div class="bg-primary p-4 w-fit">
+                <span class="text-text font-sans">Primary</span>
+            </div>
+            <div class="bg-secondary mt-2 p-4 w-fit">
+                <span class="text-text font-sans">Secondary</span>
+            </div>
+        </div>
+    </body>
 </html>
