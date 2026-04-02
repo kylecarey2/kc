@@ -3,7 +3,7 @@ import "../styles/global.css";
 import Navbar from "../components/Navbar.astro";
 
 const { title } = Astro.props;
-const margin = "px-64"; // edit this further by specifying different values for different screen sizes
+const padding = "px-64"; // edit this further by specifying different values for different screen sizes
 ---
 
 <html lang="en">
@@ -16,8 +16,8 @@ const margin = "px-64"; // edit this further by specifying different values for 
         <title>{title}</title>
     </head>
     <body class="bg-bg min-h-screen">
-        <Navbar margin={margin} />
-        <div class={margin}>
+        <Navbar padding={padding} />
+        <div class={`${padding} mt-16`}>
             <slot />
         </div>
     </body>

@@ -1,12 +1,12 @@
 ---
 interface Props {
-    margin: string;
+    padding: string;
 }
-const { margin } = Astro.props as Props;
+const { padding } = Astro.props as Props;
 ---
 
 <nav
-    class={`flex flex-row text-text justify-between items-center ${margin} py-8 sticky top-0 select-none backdrop-blur-lg bg-linear-to-t from-bg/20 to-bg/95`}
+    class={`flex flex-row text-text justify-between items-center ${padding} py-8 sticky top-0 select-none backdrop-blur-lg bg-linear-to-t from-bg/20 to-bg/95`}
 >
     <a class="text-2xl hover:text-text-secondary transition-colors" href="/"
         >KC</a
