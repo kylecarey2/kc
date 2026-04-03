@@ -1,27 +1,33 @@
 ---
-import "../styles/global.css";
+import BaseLayout from "../layouts/BaseLayout.astro";
+import ProjectCard from "../components/ProjectCard.astro";
+import GradientOrbs from "../components/GradientOrbs.astro";
+import Test from "../components/Test.astro";
 ---
 
-<html lang="en">
-    <head>
-        <meta charset="utf-8" />
-        <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-        <link rel="icon" href="/favicon.ico" />
-        <meta name="viewport" content="width=device-width" />
-        <meta name="generator" content={Astro.generator} />
-        <title>Astro</title>
-    </head>
-    <body>
-        <div class="bg-bg min-h-screen p-4">
-            <h1 class="text-text text-2xl">Kyle Carey</h1>
-            <h1 class="text-primary text-2xl">Primary Accent</h1>
-            <h1 class="text-secondary text-2xl">Secondary Accent</h1>
-            <div class="bg-primary p-4 w-fit">
-                <span class="text-text font-sans">Primary</span>
-            </div>
-            <div class="bg-secondary mt-2 p-4 w-fit">
-                <span class="text-text font-sans">Secondary</span>
-            </div>
+<BaseLayout title="Kyle Carey">
+    <div class="flex flex-row justify-between gap-8 mb-24">
+        <div class="flex-2 text-text">
+            <h1 class="text-5xl mb-4">
+                Hi, I'm <span
+                    class="underline decoration-primary hover:decoration-secondary transition-colors"
+                    >Kyle</span
+                >.
+            </h1>
+            <p class="font-sans text-lg text-text-secondary">
+                Computer Science + Artificial Intelligence student at Ohio
+                University's Russ College of Engineering. I'm currently
+                interested in parallel computing, distributed systems, web
+                development, and building cool shit. I recently built <a
+                    class="text-primary underline hover:text-secondary cursor-pointer"
+                    href="https://kygle.xyz">Kygle</a
+                >, a search engine built from scratch.
+            </p>
         </div>
-    </body>
-</html>
+        <div
+            class="relative flex-1 border border-border rounded-xl overflow-hidden"
+        >
+            <Test />
+        </div>
+    </div>
+</BaseLayout>
