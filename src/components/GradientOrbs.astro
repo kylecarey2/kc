@@ -1,198 +1,126 @@
 ---
-import "../styles/global.css";
 ---
 
-<div class="orbs-container">
-    <svg xmlns="http://www.w3.org/2000/svg" class="svg-filter">
-        <defs>
-            <filter id="goo">
-                <feGaussianBlur
-                    in="SourceGraphic"
-                    stdDeviation="5"
-                    result="blur"></feGaussianBlur>
-                <feColorMatrix
-                    in="blur"
-                    mode="matrix"
-                    values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 18 -8"
-                    result="goo"></feColorMatrix>
-                <feBlend in="SourceGraphic" in2="goo"></feBlend>
-            </filter>
-        </defs>
-    </svg>
-
-    <div class="orbs-inner">
-        <div class="orb orb-1"></div>
-        <div class="orb orb-2"></div>
-        <div class="orb orb-3"></div>
-        <div class="orb orb-4"></div>
-        <div class="orb orb-5"></div>
-    </div>
-</div>
+<div class="orb-bg"></div>
 
 <style>
-    .orbs-container {
-        position: absolute;
-        inset: 0;
-        overflow: hidden;
-        border-radius: inherit;
-        background: #0a0a0f; /* solid fallback, never transparent */
+    .orb-bg {
+        width: 100%;
+        height: 100%;
+        background:
+            radial-gradient(
+                ellipse at 20% 50%,
+                var(--color-primary) 0%,
+                transparent 50%
+            ),
+            radial-gradient(
+                ellipse at 80% 20%,
+                var(--color-secondary) 0%,
+                transparent 45%
+            ),
+            radial-gradient(
+                ellipse at 60% 80%,
+                var(--color-primary) 0%,
+                transparent 55%
+            ),
+            radial-gradient(
+                ellipse at 10% 10%,
+                var(--color-secondary) 0%,
+                transparent 40%
+            ),
+            linear-gradient(
+                -45deg,
+                var(--color-primary),
+                var(--color-secondary),
+                #23a6d5,
+                #23d5ab
+            );
+        background-size:
+            200% 200%,
+            180% 180%,
+            220% 220%,
+            160% 160%,
+            100% 100%;
+        animation:
+            layer1 6s ease infinite alternate,
+            layer2 8s ease infinite alternate,
+            layer3 10s ease infinite alternate,
+            layer4 4s ease infinite alternate;
     }
 
-    .orbs-inner {
-        position: absolute;
-        inset: -20%;
-        filter: url(#goo) blur(20px);
-    }
-
-    .orb-1 {
-        width: 160%;
-        height: 160%;
-        top: 20%;
-        left: 50%;
-        background: radial-gradient(
-            circle at center,
-            var(--color-primary),
-            transparent 70%
-        );
-        animation: moveOrb1 12s ease-in-out infinite alternate;
-    }
-
-    .orb-2 {
-        width: 160%;
-        height: 160%;
-        top: 70%;
-        right: 50%;
-        background: radial-gradient(
-            circle at center,
-            var(--color-secondary),
-            transparent 70%
-        );
-        animation: moveOrb2 10s ease-in-out infinite alternate;
-    }
-
-    .orb-3 {
-        width: 160%;
-        height: 160%;
-        bottom: 40%;
-        right: 80%;
-        background: radial-gradient(
-            circle at center,
-            var(--color-primary),
-            transparent 60%
-        );
-        animation: moveOrb3 14s ease-in-out infinite alternate;
-    }
-
-    .orb-4 {
-        width: 160%;
-        height: 190%;
-        top: 80%;
-        right: 20%;
-        background: radial-gradient(
-            circle at center,
-            var(--color-secondary),
-            transparent 65%
-        );
-        animation: moveOrb4 9s ease-in-out infinite alternate;
-    }
-
-    .orb-5 {
-        width: 160%;
-        height: 160%;
-        top: -50%;
-        right: -50%;
-        background: radial-gradient(
-            circle at center,
-            var(--color-primary),
-            transparent 70%
-        );
-        animation: moveOrb5 11s ease-in-out infinite alternate;
-    }
-
-    /*.orb-1 {
-        top: 20%;
-        left: 30%;
-    }
-    .orb-2 {
-        top: 70%;
-        left: 60%;
-    }
-    .orb-3 {
-        bottom: 40%;
-        right: 80%;
-    }
-    .orb-4 {
-        bottom: 80%;
-        right: 20%;
-    }
-    .orb-5 {
-        top: 50%;
-        left: 50%;
-    }*/
-
-    @keyframes moveOrb1 {
+    @keyframes layer1 {
         0% {
-            transform: translate(-50%, -50%) scale(1);
-        }
-        33% {
-            transform: translate(-35%, -60%) scale(1.1);
-        }
-        66% {
-            transform: translate(-55%, -35%) scale(0.95);
+            background-position:
+                0% 50%,
+                100% 0%,
+                50% 100%,
+                0% 0%,
+                0% 0%;
         }
         100% {
-            transform: translate(-40%, -45%) scale(1.05);
+            background-position:
+                100% 50%,
+                0% 100%,
+                100% 0%,
+                100% 100%,
+                0% 0%;
         }
     }
 
-    @keyframes moveOrb2 {
+    @keyframes layer2 {
         0% {
-            transform: translate(-50%, -50%) scale(1);
-        }
-        33% {
-            transform: translate(-70%, -40%) scale(1.15);
-        }
-        66% {
-            transform: translate(-40%, -65%) scale(0.9);
+            background-position:
+                100% 50%,
+                0% 100%,
+                100% 0%,
+                100% 100%,
+                0% 0%;
         }
         100% {
-            transform: translate(-60%, -45%) scale(1.1);
+            background-position:
+                0% 0%,
+                100% 50%,
+                0% 100%,
+                50% 0%,
+                0% 0%;
         }
     }
 
-    @keyframes moveOrb3 {
+    @keyframes layer3 {
         0% {
-            transform: translate(50%, -50%) scale(1);
-        }
-        50% {
-            transform: translate(-25%, 70%) scale(1.2);
+            background-position:
+                50% 0%,
+                50% 100%,
+                0% 50%,
+                100% 50%,
+                0% 0%;
         }
         100% {
-            transform: translate(40%, 40%) scale(0.85);
+            background-position:
+                0% 100%,
+                100% 0%,
+                100% 100%,
+                0% 0%,
+                0% 0%;
         }
     }
 
-    @keyframes moveOrb4 {
+    @keyframes layer4 {
         0% {
-            transform: translate(-50%, 50%) scale(1);
-        }
-        40% {
-            transform: translate(-65%, -30%) scale(1.1);
+            background-position:
+                0% 0%,
+                100% 100%,
+                50% 50%,
+                0% 100%,
+                0% 0%;
         }
         100% {
-            transform: translate(-45%, -60%) scale(0.9);
-        }
-    }
-
-    @keyframes moveOrb5 {
-        0% {
-            transform: translate(50%, 50%) scale(1);
-        }
-        60% {
-            transform: translate(-70%, 65%) scale(1.2);
-        }
-        100% {
-            transform: translate(40%, -45%) scale(0.95);
+            background-position:
+                100% 100%,
+                0% 0%,
+                100% 50%,
+                100% 0%,
+                0% 0%;
         }
     }
 </style>
