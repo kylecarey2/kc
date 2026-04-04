@@ -2,7 +2,11 @@
 import BaseLayout from "../layouts/BaseLayout.astro";
 import ProjectCard from "../components/ProjectCard.astro";
 import GradientOrbs from "../components/GradientOrbs.astro";
-import Test from "../components/Test.astro";
+
+import { getCollection } from "astro:content";
+
+const allProjects = await getCollection("projects");
+const featured = allProjects.filter((p: any) => p.data.featured);
 ---
 
 <BaseLayout title="Kyle Carey">
@@ -24,10 +28,41 @@ import Test from "../components/Test.astro";
                 >, a search engine built from scratch.
             </p>
         </div>
+        <div class="relative flex-1 border border-border rounded-xl overflow-hidden">
+            <GradientOrbs />
+        </div>
+    </div>
+    <div>
         <div
-            class="relative flex-1 border border-border rounded-xl overflow-hidden"
+            class="flex flex-row justify-between items-center gap-8 mb-12 text-text"
         >
-            <Test />
+            <h1 class="text-4xl">Featured Projects.</h1>
+            <a
+                href="/projects"
+                class="text-primary hover:text-secondary transition-colors underline"
+            >
+                <div class="flex items-center gap-2 select-none">
+                    <span>View all</span>
+                    <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke-width="1.5"
+                        stroke="currentColor"
+                        class="size-4"
+                    >
+                        <path
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3"></path>
+                    </svg>
+                </div>
+            </a>
+        </div>
+        <div class="grid grid-cols-2 gap-8 mb-32">
+            {featured.map((project: any) => (
+                <ProjectCard project={project.data} />
+            ))}
         </div>
     </div>
 </BaseLayout>
