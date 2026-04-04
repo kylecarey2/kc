@@ -1,0 +1,71 @@
+---
+import Tag from "./Tag.astro";
+import GradientOrbs from "./GradientOrbs.astro";
+
+interface Props {
+    project: {
+        title: string;
+        description: string;
+        url?: string;
+        repo?: string;
+        tags: string[];
+        featured: boolean;
+        date: Date;
+    }
+}
+
+const { project } = Astro.props;
+
+const MAX_TAGS = 3;
+const visibleTags = project.tags.slice(0, MAX_TAGS);
+const remainingTagsCount = project.tags.length - MAX_TAGS;
+---
+
+<div class="flex flex-col border-2 border-border rounded-xl bg-bg-secondary">
+    <div class="flex-1 max-h-64 min-h-48 p-2">
+        <div class="relative flex-1 h-full rounded-t-xl overflow-hidden">
+            <GradientOrbs />
+        </div>
+    </div>
+    <div class="flex flex-col flex-1 p-4 border-t-2 border-border">
+        <div class="flex-1">
+        <h3 class="text-text text-2xl mb-2">{project.title}</h3>
+        <p class="text-text-secondary font-sans mb-2">
+            {project.description}
+        </p>
+
+        </div>
+        <div class="flex flex-row justify-between gap-4 items-center">
+            <div class="flex-1 min-w-0 flex flex-row gap-2 overflow-hidden items-center py-1">
+                {visibleTags.map((tag: string) => (
+                    <Tag text={tag} />
+                ))}
+
+                {remainingTagsCount > 0 && (
+                  <span class="text-text-secondary text-lg font-sans">+{remainingTagsCount}</span>
+                )}
+            </div>
+            <a
+                href="#"
+                class="shrink-0 py-2 px-4 rounded bg-primary hover:bg-secondary transition-colors select-none"
+            >
+                <div class="flex items-center gap-2 text-text">
+                    <span>View Project</span>
+                    <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke-width="1.5"
+                        stroke="currentColor"
+                        class="size-4"
+                    >
+                        <path
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3"></path>
+                    </svg>
+                </div>
+            </a>
+        </div>
+    </div>
+</div>
