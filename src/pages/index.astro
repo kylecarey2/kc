@@ -1,12 +1,33 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
 import ProjectCard from "../components/ProjectCard.astro";
+import ExperienceCard from "../components/ExperienceCard.astro";
 import GradientOrbs from "../components/GradientOrbs.astro";
+
 
 import { getCollection } from "astro:content";
 
 const allProjects = await getCollection("projects");
 const featured = allProjects.filter((p: any) => p.data.featured);
+
+const experiences = await getCollection("experiences");
+const sortedExperiences = experiences.sort((a, b) => {
+    const aEnd = a.data.endDate;
+    const bEnd = b.data.endDate;
+
+    // No end date, float to top
+    if (!aEnd && bEnd) return -1;
+    if (aEnd && !bEnd) return 1;
+
+    // Sort by start date descending (both no end date)
+    if (!aEnd && !bEnd) {
+      return b.data.startDate.getTime() - a.data.startDate.getTime();
+    }
+
+    // Sort by end date descending
+    return bEnd!.getTime() - aEnd!.getTime();
+});
+
 ---
 
 <BaseLayout title="Kyle Carey">
@@ -22,7 +43,8 @@ const featured = allProjects.filter((p: any) => p.data.featured);
                 Computer Science + Artificial Intelligence student at Ohio
                 University's Russ College of Engineering. I'm currently
                 interested in parallel computing, distributed systems, web
-                development, and building cool shit. I recently built <a
+                development, and building cool shit. Outside of tech, you'll
+                likely find me on a golf course. I recently built <a
                     class="text-primary underline hover:text-secondary cursor-pointer transition-colors"
                     href="https://kygle.xyz">Kygle</a
                 >, a search engine built from scratch.
@@ -54,7 +76,7 @@ const featured = allProjects.filter((p: any) => p.data.featured);
             <GradientOrbs />
         </div>
     </div>
-    <div>
+    <div class="mb-24">
         <div
             class="flex flex-row justify-between items-center gap-8 mb-12 text-text"
         >
@@ -81,9 +103,48 @@ const featured = allProjects.filter((p: any) => p.data.featured);
                 </div>
             </a>
         </div>
-        <div class="grid grid-cols-2 gap-8 mb-32">
+        <div class="grid grid-cols-2 gap-8">
             {featured.map((project: any) => (
                 <ProjectCard project={project.data} />
+            ))}
+        </div>
+    </div>
+    <div class="mb-24">
+        <div
+            class="flex flex-row justify-between items-center gap-8 mb-12 text-text"
+        >
+            <h1 class="text-4xl">Experience.</h1>
+            <a
+                href="/about"
+                class="text-primary hover:text-secondary transition-all underline"
+            >
+                <div class="flex items-center gap-2 hover:gap-3 transition-all select-none">
+                    <span>Details</span>
+                    <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke-width="1.5"
+                        stroke="currentColor"
+                        class="size-4"
+                    >
+                        <path
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3"></path>
+                    </svg>
+                </div>
+            </a>
+        </div>
+        <div class="flex flex-wrap justify-center gap-4">
+            {sortedExperiences.map((experience) => (
+                <ExperienceCard
+                    company={experience.data.company}
+                    position={experience.data.position}
+                    startDate={experience.data.startDate}
+                    endDate={experience.data.endDate}
+                    image={experience.data.image}
+                />
             ))}
         </div>
     </div>

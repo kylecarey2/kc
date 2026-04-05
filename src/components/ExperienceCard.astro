@@ -1,0 +1,26 @@
+---
+import { Image } from 'astro:assets';
+
+interface Props {
+    company: string;
+    position: string;
+    startDate: Date;
+    endDate?: Date;
+    image: string;
+}
+
+const { company, position, startDate, endDate, image } = Astro.props;
+
+const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+const startDateStr = `${months[startDate.getMonth()]} ${startDate.getFullYear()}`;
+const endDateStr = endDate ? `${months[endDate.getMonth()]} ${endDate.getFullYear()}` : "Present";
+---
+
+<div class="w-72 mb-2 flex flex-row items-center gap-4 text-text">
+    <img src={image} alt={company + "logo"} class="shrink-0 size-20 rounded-lg" />
+    <div class="min-w-0 flex flex-col gap-1">
+        <h3 class="text-xl font-semibold">{company}</h3>
+        <p class="text-sm text-text-secondary font-sans">{position}</p>
+        <p class="text-sm text-text-secondary font-sans">{startDateStr} - {endDateStr}</p>
+    </div>
+</div>
