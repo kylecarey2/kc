@@ -25,6 +25,22 @@ const remainingTagsCount = project.tags.length - MAX_TAGS;
     <div class="flex-1 max-h-64 min-h-48 p-2">
         <div class="relative flex-1 h-full rounded-t-xl overflow-hidden">
             <GradientOrbs />
+            <div class="absolute inset-0 flex items-center justify-center pointer-events-none">
+                <div class="flex flex-col items-center">
+                    <span class="mb-2 text-8xl font-bold select-none opacity-20 text-white" style="letter-spacing: -0.04em;">
+                        {project.title.toUpperCase()}
+                    </span>
+                    <div class="opacity-30 flex flex-row gap-2 text-white text-center font-sans select-none">
+                        {project.tags.map((tag, index) => (
+                          <>
+                            <span>{tag}</span>
+                            {index < project.tags.length - 1 && <span>/</span>}
+                          </>
+                        ))}
+                    </div>
+                </div>
+
+            </div>
         </div>
     </div>
     <div class="flex flex-col flex-1 p-4 border-t-2 border-border">
