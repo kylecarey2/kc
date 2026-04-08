@@ -1,126 +1,127 @@
 ---
+
 ---
 
 <div class="orb-bg"></div>
 
 <style>
-    .orb-bg {
-        width: 100%;
-        height: 100%;
-        background:
-            radial-gradient(
-                ellipse at 20% 50%,
-                var(--color-primary) 0%,
-                transparent 50%
-            ),
-            radial-gradient(
-                ellipse at 80% 20%,
-                var(--color-secondary) 0%,
-                transparent 45%
-            ),
-            radial-gradient(
-                ellipse at 60% 80%,
-                var(--color-primary) 0%,
-                transparent 55%
-            ),
-            radial-gradient(
-                ellipse at 10% 10%,
-                var(--color-secondary) 0%,
-                transparent 40%
-            ),
-            linear-gradient(
-                -45deg,
-                var(--color-primary),
-                var(--color-secondary),
-                #23a6d5,
-                #23d5ab
-            );
-        background-size:
-            200% 200%,
-            180% 180%,
-            220% 220%,
-            160% 160%,
-            100% 100%;
-        animation:
-            layer1 6s ease infinite alternate,
-            layer2 8s ease infinite alternate,
-            layer3 10s ease infinite alternate,
-            layer4 4s ease infinite alternate;
-    }
+  .orb-bg {
+    width: 100%;
+    height: 100%;
+    background:
+      radial-gradient(
+        ellipse at 20% 50%,
+        var(--color-primary) 0%,
+        transparent 50%
+      ),
+      radial-gradient(
+        ellipse at 80% 20%,
+        var(--color-secondary) 0%,
+        transparent 45%
+      ),
+      radial-gradient(
+        ellipse at 60% 80%,
+        var(--color-primary) 0%,
+        transparent 55%
+      ),
+      radial-gradient(
+        ellipse at 10% 10%,
+        var(--color-secondary) 0%,
+        transparent 40%
+      ),
+      linear-gradient(
+        -45deg,
+        var(--color-primary),
+        var(--color-secondary),
+        #23a6d5,
+        #23d5ab
+      );
+    background-size:
+      200% 200%,
+      180% 180%,
+      220% 220%,
+      160% 160%,
+      100% 100%;
+    animation:
+      layer1 6s ease infinite alternate,
+      layer2 8s ease infinite alternate,
+      layer3 10s ease infinite alternate,
+      layer4 4s ease infinite alternate;
+  }
 
-    @keyframes layer1 {
-        0% {
-            background-position:
-                0% 50%,
-                100% 0%,
-                50% 100%,
-                0% 0%,
-                0% 0%;
-        }
-        100% {
-            background-position:
-                100% 50%,
-                0% 100%,
-                100% 0%,
-                100% 100%,
-                0% 0%;
-        }
+  @keyframes layer1 {
+    0% {
+      background-position:
+        0% 50%,
+        100% 0%,
+        50% 100%,
+        0% 0%,
+        0% 0%;
     }
+    100% {
+      background-position:
+        100% 50%,
+        0% 100%,
+        100% 0%,
+        100% 100%,
+        0% 0%;
+    }
+  }
 
-    @keyframes layer2 {
-        0% {
-            background-position:
-                100% 50%,
-                0% 100%,
-                100% 0%,
-                100% 100%,
-                0% 0%;
-        }
-        100% {
-            background-position:
-                0% 0%,
-                100% 50%,
-                0% 100%,
-                50% 0%,
-                0% 0%;
-        }
+  @keyframes layer2 {
+    0% {
+      background-position:
+        100% 50%,
+        0% 100%,
+        100% 0%,
+        100% 100%,
+        0% 0%;
     }
+    100% {
+      background-position:
+        0% 0%,
+        100% 50%,
+        0% 100%,
+        50% 0%,
+        0% 0%;
+    }
+  }
 
-    @keyframes layer3 {
-        0% {
-            background-position:
-                50% 0%,
-                50% 100%,
-                0% 50%,
-                100% 50%,
-                0% 0%;
-        }
-        100% {
-            background-position:
-                0% 100%,
-                100% 0%,
-                100% 100%,
-                0% 0%,
-                0% 0%;
-        }
+  @keyframes layer3 {
+    0% {
+      background-position:
+        50% 0%,
+        50% 100%,
+        0% 50%,
+        100% 50%,
+        0% 0%;
     }
+    100% {
+      background-position:
+        0% 100%,
+        100% 0%,
+        100% 100%,
+        0% 0%,
+        0% 0%;
+    }
+  }
 
-    @keyframes layer4 {
-        0% {
-            background-position:
-                0% 0%,
-                100% 100%,
-                50% 50%,
-                0% 100%,
-                0% 0%;
-        }
-        100% {
-            background-position:
-                100% 100%,
-                0% 0%,
-                100% 50%,
-                100% 0%,
-                0% 0%;
-        }
+  @keyframes layer4 {
+    0% {
+      background-position:
+        0% 0%,
+        100% 100%,
+        50% 50%,
+        0% 100%,
+        0% 0%;
     }
+    100% {
+      background-position:
+        100% 100%,
+        0% 0%,
+        100% 50%,
+        100% 0%,
+        0% 0%;
+    }
+  }
 </style>
