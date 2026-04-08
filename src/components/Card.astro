@@ -1,0 +1,21 @@
+---
+interface Props {
+  width?: string;
+}
+
+const { width } = Astro.props;
+---
+
+<div
+  class={`max-w-${width ?? 'full'} flex flex-col border-2 border-border rounded-xl bg-bg-secondary p-2`}
+>
+  <div class="mb-4 text-text text-2xl">
+    <slot name="header" />
+  </div>
+  <div class="flex-1 mb-4 text-text-secondary font-sans">
+    <slot />
+  </div>
+  <div class="font-sans text-text-secondary self-end">
+    <slot name="footer" />
+  </div>
+</div>

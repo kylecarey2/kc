@@ -3,6 +3,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import ExperienceCard from '../components/ExperienceCard.astro';
 import { getCollection, render } from 'astro:content';
 import GradientOrbs from '../components/GradientOrbs.astro';
+import Card from '../components/Card.astro';
 
 const experiences = await getCollection('experiences');
 const sortedExperiences = experiences.sort((a, b) => {
@@ -24,26 +25,68 @@ const rendered = await Promise.all(
 ---
 
 <BaseLayout title="About">
-  <div class="flex flex-row gap-4 justify-between mb-12">
-    <div class="flex-2">
-      <h1 class="text-text text-5xl mb-4">About Me</h1>
-      <p class="text-text-secondary font-sans">
-        I'm currently a sophomore at Ohio University double majoring in Computer
-        Science and Artificial Intelligence. I am also working on a certificate
-        in Cybersecurity Management. Outside of the classroom, I enjoy working
-        on a wide variety of personal projects, playing sports, staying active,
-        and finding new hobbies with friends. You'll likely find me on a golf
-        course yelling "fore" in my free time when the weather is nice. Feel
-        free to snoop around here and contact/connect with me on any of my
-        socials I've linked.
-      </p>
+  <div class="mb-12">
+    <div class="flex flex-row gap-4 justify-between mb-4">
+      <div class="flex-2">
+        <h1 class="text-text text-5xl mb-4">About Me</h1>
+        <p class="text-text-secondary font-sans">
+          I'm currently a sophomore at Ohio University double majoring in
+          Computer Science and Artificial Intelligence. I am also working on a
+          certificate in Cybersecurity Management. Outside of the classroom, I
+          enjoy working on a wide variety of personal projects, playing sports,
+          staying active, and finding new hobbies with friends. You'll likely
+          find me on a golf course yelling "fore" in my free time when the
+          weather is nice. Feel free to snoop around here and contact/connect
+          with me on any of my socials I've linked.
+        </p>
+      </div>
+      <div
+        class="relative flex-1 border border-border rounded-xl overflow-hidden"
+      >
+        <GradientOrbs />
+      </div>
     </div>
-    <div
-      class="relative flex-1 border border-border rounded-xl overflow-hidden"
-    >
-      <GradientOrbs />
+    <div class="flex flex-row gap-4">
+      <Card width="72">
+        <h1 slot="header" class="text-text text-2xl">
+          Follow my <span
+            class="underline decoration-primary hover:decoration-secondary transition-colors"
+            >18Birdies</span
+          >
+        </h1>
+        <p>
+          I use 18Birdies to track my golf scores. Check it out to see how bad I
+          am
+        </p>
+        <div slot="footer" class="mb-2">
+          <a
+            href="https://18birdies.onelink.me/IdkR/uhz1sr3t"
+            target="_blank"
+            class="py-2 px-4 rounded bg-primary hover:bg-secondary transition-colors select-none text-text"
+          >
+            View
+          </a>
+        </div>
+      </Card>
+      <Card width="sm">
+        <h1 slot="header">Gear and Setup</h1>
+        <div class="flex flex-row gap-4">
+          <ul class="list-disc ml-4">
+            <li>Zenbook 14x</li>
+            <li>Mac Mini M4</li>
+            <li>MX Master 3s</li>
+            <li>MX Mechanical Mini</li>
+          </ul>
+          <ul class="list-disc ml-4">
+            <li>Zed</li>
+            <li>VSCode</li>
+            <li>Raycast</li>
+          </ul>
+        </div>
+      </Card>
     </div>
   </div>
+
   <div class="mb-12 scroll-mt-24" id="experience">
     <h2 class="text-text text-4xl mb-4">Professional Experience</h2>
     <ul>
