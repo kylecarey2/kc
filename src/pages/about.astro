@@ -1,9 +1,29 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import ExperienceCard from '../components/ExperienceCard.astro';
+import { getCollection, render } from 'astro:content';
+
+const experiences = await getCollection('experiences');
+const sortedExperiences = experiences.sort((a, b) => {
+  const aEnd = a.data.endDate;
+  const bEnd = b.data.endDate;
+  if (!aEnd && bEnd) return -1;
+  if (aEnd && !bEnd) return 1;
+  if (!aEnd && !bEnd)
+    return b.data.startDate.getTime() - a.data.startDate.getTime();
+  return bEnd!.getTime() - aEnd!.getTime();
+});
+
+const rendered = await Promise.all(
+  sortedExperiences.map(async (experience) => ({
+    experience,
+    Content: (await render(experience)).Content,
+  })),
+);
 ---
 
 <BaseLayout title="About">
-  <div>
+  <div class="mb-12">
     <h1 class="text-text text-5xl mb-4">About Me</h1>
     <p class="text-text-secondary font-sans">
       Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
@@ -15,7 +35,30 @@ import BaseLayout from '../layouts/BaseLayout.astro';
       est laborum.
     </p>
   </div>
-  <div>
-    <p>hey</p>
+  <div class="mb-12 scroll-mt-24" id="experience">
+    <h2 class="text-text text-4xl mb-4">Professional Experience</h2>
+    <ul>
+      {
+        rendered.map(({ experience, Content }, idx) => (
+          <li>
+            <ExperienceCard
+              company={experience.data.company}
+              position={experience.data.position}
+              startDate={experience.data.startDate}
+              endDate={experience.data.endDate}
+              image={experience.data.image}
+            />
+            <div class="flex flex-row mb-2">
+              <div
+                class={`mx-10 h-auto w-px ${idx < rendered.length - 1 ? 'bg-text-muted' : ''}`}
+              />
+              <div class="text-text-secondary font-sans ml-4 prose prose-invert">
+                <Content />
+              </div>
+            </div>
+          </li>
+        ))
+      }
+    </ul>
   </div>
 </BaseLayout>
