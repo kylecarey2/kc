@@ -1,0 +1,33 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import ProjectCard from '../../components/ProjectCard.astro';
+import { getCollection } from 'astro:content';
+
+const allProjects = await getCollection('projects');
+const projects = allProjects.sort(
+  (a, b) => new Date(b.data.date).getTime() - new Date(a.data.date).getTime(),
+);
+---
+
+<BaseLayout title="Projects">
+  <div class="mb-12">
+    <h1 class="text-text text-5xl mb-4">All Projects</h1>
+    <p class="w-xl text-text-secondary font-sans">
+      Check out my showcased projects below. You can also find more of my
+      work/experiments that I don't showcase here on my <a
+        href="https://github.com/kylecarey2"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="text-primary hover:text-secondary transition-all underline"
+        >GitHub</a
+      >. Feel free to reach out with any specific questions on these projects.
+    </p>
+  </div>
+  <div class="flex flex-wrap justify-center gap-4 mb-12">
+    {
+      projects.map((project) => (
+        <ProjectCard project={project.data} href={`/projects/${project.id}`} />
+      ))
+    }
+  </div>
+</BaseLayout>

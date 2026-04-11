@@ -12,23 +12,26 @@ interface Props {
     featured: boolean;
     date: Date;
   };
+  href?: string;
 }
 
-const { project } = Astro.props;
+const { project, href } = Astro.props;
 
 const MAX_TAGS = 3;
 const visibleTags = project.tags.slice(0, MAX_TAGS);
 const remainingTagsCount = project.tags.length - MAX_TAGS;
 ---
 
-<div class="flex flex-col border-2 border-border rounded-xl bg-bg-secondary">
+<div
+  class="w-full max-w-md flex flex-col border-2 border-border rounded-xl bg-bg-secondary"
+>
   <div class="flex-1 max-h-64 min-h-48 p-2">
     <div class="relative flex-1 h-full rounded-t-xl overflow-hidden">
       <GradientOrbs />
       <div
         class="absolute inset-0 flex items-center justify-center pointer-events-none"
       >
-        <div class="flex flex-col items-center">
+        <!-- <div class="flex flex-col items-center">
           <span
             class="mb-2 text-8xl font-bold select-none opacity-20 text-white"
             style="letter-spacing: -0.04em;"
@@ -47,7 +50,7 @@ const remainingTagsCount = project.tags.length - MAX_TAGS;
               ))
             }
           </div>
-        </div>
+        </div> -->
       </div>
     </div>
   </div>
@@ -73,7 +76,7 @@ const remainingTagsCount = project.tags.length - MAX_TAGS;
         }
       </div>
       <a
-        href="#"
+        href={href}
         class="shrink-0 py-2 px-4 rounded bg-primary hover:bg-secondary transition-colors select-none"
       >
         <div class="flex items-center gap-2 text-text">
