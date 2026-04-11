@@ -1,0 +1,49 @@
+@reference 'tailwindcss';
+
+article {
+  h1 {
+    @apply text-4xl mb-2;
+    color: var(--color-text);
+    font-family: var(--default-font-family);
+  }
+  h2 {
+    @apply text-3xl mb-2;
+    color: var(--color-text);
+    font-family: var(--default-font-family);
+  }
+  h3 {
+    @apply text-2xl mb-2;
+    color: var(--color-text);
+    font-family: var(--default-font-family);
+  }
+  p {
+    @apply mb-4;
+  }
+  a {
+    @apply underline transition-colors;
+    color: var(--color-primary);
+  }
+  a:hover {
+    color: var(--color-secondary);
+  }
+  img {
+    @apply w-lg mx-auto;
+  }
+  ul {
+    @apply list-disc pl-5;
+  }
+  ol {
+    @apply list-decimal pl-5;
+  }
+  hr {
+    @apply my-2;
+    color: var(--color-bg-secondary);
+  }
+  blockquote {
+    @apply my-4 pl-4 border-l-4;
+    border-color: var(--color-border);
+  }
+  pre {
+    @apply mx-4 px-2 rounded my-2;
+  }
+}
