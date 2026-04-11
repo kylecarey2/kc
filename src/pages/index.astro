@@ -161,7 +161,14 @@ const sortedExperiences = experiences.sort((a, b) => {
       </a>
     </div>
     <div class="grid grid-cols-2 gap-8">
-      {featured.map((project: any) => <ProjectCard project={project.data} />)}
+      {
+        featured.map((project: any) => (
+          <ProjectCard
+            project={project.data}
+            href={`/projects/${project.id}`}
+          />
+        ))
+      }
     </div>
   </div>
   <div class="mb-24">
@@ -170,7 +177,7 @@ const sortedExperiences = experiences.sort((a, b) => {
     >
       <h1 class="text-4xl">Experience.</h1>
       <a
-        href="/about"
+        href="/about#experience"
         class="text-primary hover:text-secondary transition-all underline"
       >
         <div
@@ -195,17 +202,15 @@ const sortedExperiences = experiences.sort((a, b) => {
     </div>
     <div class="flex flex-wrap justify-center gap-4">
       {
-        sortedExperiences
-          .slice(1)
-          .map((experience) => (
-            <ExperienceCard
-              company={experience.data.company}
-              position={experience.data.position}
-              startDate={experience.data.startDate}
-              endDate={experience.data.endDate}
-              image={experience.data.image}
-            />
-          ))
+        sortedExperiences.map((experience) => (
+          <ExperienceCard
+            company={experience.data.company}
+            position={experience.data.position}
+            startDate={experience.data.startDate}
+            endDate={experience.data.endDate}
+            image={experience.data.image}
+          />
+        ))
       }
     </div>
   </div>
