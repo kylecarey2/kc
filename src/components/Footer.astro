@@ -1,13 +1,13 @@
 ---
 interface Props {
-  padding: string;
+  width: string;
 }
-const { padding } = Astro.props as Props;
+const { width } = Astro.props as Props;
 
 const year = new Date().getFullYear();
 ---
 
-<footer class={`${padding}`}>
+<footer class={`px-0! sm:px-8 ${width}`}>
   <div
     class="flex flex-row text-text justify-between items-center bg-bg-secondary rounded-t-xl py-8 px-4"
   >

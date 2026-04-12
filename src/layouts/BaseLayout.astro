@@ -4,7 +4,7 @@ import Navbar from '../components/Navbar.astro';
 import Footer from '../components/Footer.astro';
 
 const { title } = Astro.props;
-const padding = 'px-64'; // edit this further by specifying different values for different screen sizes
+const width = 'w-full px-4 sm:px-8 md:w-2xl md:px-0 lg:w-[932px] lg:px-0'; // edit this further by specifying different values for different screen sizes 928
 ---
 
 <html lang="en">
@@ -16,11 +16,11 @@ const padding = 'px-64'; // edit this further by specifying different values for
     <meta name="generator" content={Astro.generator} />
     <title>{title}</title>
   </head>
-  <body class="bg-bg min-h-screen flex flex-col">
-    <Navbar padding={padding} />
-    <div class={`${padding} mt-16 grow`}>
+  <body class="bg-bg min-h-screen flex flex-col items-center">
+    <Navbar width={width} />
+    <div class={`${width} mt-16 grow`}>
       <slot />
     </div>
-    <Footer padding={padding} />
+    <Footer width={width} />
   </body>
 </html>

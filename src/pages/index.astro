@@ -30,7 +30,7 @@ const sortedExperiences = experiences.sort((a, b) => {
 
 <BaseLayout title="Kyle Carey">
   <div class="flex flex-row justify-between gap-8 mb-24">
-    <div class="flex-2 text-text">
+    <div class="pr-8 md:pr-0 flex-2 text-text">
       <h1 class="text-5xl mb-4">
         Hi, I'm <span
           class="underline decoration-primary hover:decoration-secondary transition-colors"
@@ -126,16 +126,16 @@ const sortedExperiences = experiences.sort((a, b) => {
       </div>
     </div>
     <div
-      class="relative flex-1 border border-border rounded-xl overflow-hidden"
+      class="hidden md:block relative flex-1 border border-border rounded-xl overflow-hidden"
     >
       <GradientOrbs />
     </div>
   </div>
   <div class="mb-24">
     <div
-      class="flex flex-row justify-between items-center gap-8 mb-12 text-text"
+      class="sm:flex flex-row justify-between items-center gap-8 mb-12 text-text"
     >
-      <h1 class="text-4xl">Featured Projects.</h1>
+      <h1 class="mb-2 sm:mb-0 text-4xl">Featured Projects.</h1>
       <a
         href="/projects"
         class="text-primary hover:text-secondary transition-all underline"
@@ -160,7 +160,7 @@ const sortedExperiences = experiences.sort((a, b) => {
         </div>
       </a>
     </div>
-    <div class="grid grid-cols-2 gap-8">
+    <div class="grid grid-cols-1 px-4 sm:px-24 md:px-0 md:grid-cols-2 gap-8">
       {
         featured.map((project: any) => (
           <ProjectCard
@@ -173,9 +173,9 @@ const sortedExperiences = experiences.sort((a, b) => {
   </div>
   <div class="mb-24">
     <div
-      class="flex flex-row justify-between items-center gap-8 mb-12 text-text"
+      class="sm:flex flex-row justify-between items-center gap-8 mb-12 text-text"
     >
-      <h1 class="text-4xl">Experience.</h1>
+      <h1 class="mb-2 sm:mb-0 text-4xl">Experience.</h1>
       <a
         href="/about#experience"
         class="text-primary hover:text-secondary transition-all underline"
@@ -200,7 +200,7 @@ const sortedExperiences = experiences.sort((a, b) => {
         </div>
       </a>
     </div>
-    <div class="flex flex-wrap justify-center gap-4">
+    <div class="flex flex-wrap sm:justify-center gap-4">
       {
         sortedExperiences.map((experience) => (
           <ExperienceCard

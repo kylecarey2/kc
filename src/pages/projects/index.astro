@@ -12,7 +12,7 @@ const projects = allProjects.sort(
 <BaseLayout title="Projects">
   <div class="mb-12">
     <h1 class="text-text text-5xl mb-4">All Projects</h1>
-    <p class="w-xl text-text-secondary font-sans">
+    <p class="pr-8 sm:pr-0 sm:w-xl text-text-secondary font-sans">
       Check out my showcased projects below. You can also find more of my
       work/experiments that I don't showcase here on my <a
         href="https://github.com/kylecarey2"
@@ -26,7 +26,12 @@ const projects = allProjects.sort(
   <div class="flex flex-wrap justify-center gap-4 mb-12">
     {
       projects.map((project) => (
-        <ProjectCard project={project.data} href={`/projects/${project.id}`} />
+        <div class="w-md flex">
+          <ProjectCard
+            project={project.data}
+            href={`/projects/${project.id}`}
+          />
+        </div>
       ))
     }
   </div>
