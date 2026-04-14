@@ -129,8 +129,16 @@ const sortedExperiences = experiences.sort((a, b) => {
       class="hidden md:block relative flex-1 border border-border rounded-xl overflow-hidden"
     >
       <GradientOrbs />
+      <div class="absolute inset-0 flex items-end justify-center">
+        <img
+          src="/images/headshot.png"
+          alt="Profile"
+          class="lg:translate-y-8 select-none grayscale img-outline"
+        />
+      </div>
     </div>
   </div>
+
   <div class="mb-24">
     <div
       class="sm:flex flex-row justify-between items-center gap-8 mb-12 text-text"
@@ -215,3 +223,14 @@ const sortedExperiences = experiences.sort((a, b) => {
     </div>
   </div>
 </BaseLayout>
+
+<style>
+  .img-outline {
+    filter: grayscale(100%);
+  }
+
+  /*drop-shadow(4px 0px 0px var(--color-bg))
+    drop-shadow(-4px 0px 0px var(--color-bg))
+    drop-shadow(0px 4px 0px var(--color-bg))
+    drop-shadow(0px -4px 0px var(--color-bg));*/
+</style>
