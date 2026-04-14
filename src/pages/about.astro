@@ -4,6 +4,7 @@ import ExperienceCard from '../components/ExperienceCard.astro';
 import { getCollection, render } from 'astro:content';
 import GradientOrbs from '../components/GradientOrbs.astro';
 import Card from '../components/Card.astro';
+import Carousel from '../components/react/Carousel.tsx';
 
 const experiences = await getCollection('experiences');
 const sortedExperiences = experiences.sort((a, b) => {
@@ -22,6 +23,10 @@ const rendered = await Promise.all(
     Content: (await render(experience)).Content,
   })),
 );
+
+// Get image paths
+const matches = import.meta.glob('/public/images/carousel/*', { eager: true });
+const images = Object.keys(matches);
 ---
 
 <BaseLayout title="About">
@@ -78,10 +83,13 @@ const rendered = await Promise.all(
         class="hidden lg:block relative flex-1 border border-border rounded-xl overflow-hidden"
       >
         <GradientOrbs />
+        <div class="absolute inset-0 flex items-center justify-center m-4">
+          <Carousel client:load images={images} />
+        </div>
       </div>
     </div>
   </div>
-
+  <!-- Consider throwing a card of socials here -->
   <div class="mb-12 scroll-mt-24" id="experience">
     <h2 class="text-text text-4xl mb-4">Professional Experience</h2>
     <ul>
