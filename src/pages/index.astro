@@ -133,7 +133,7 @@ const sortedExperiences = experiences.sort((a, b) => {
         <img
           src="/images/headshot.png"
           alt="Profile"
-          class="lg:translate-y-8 select-none grayscale img-outline"
+          class="lg:translate-y-8 select-none hover:grayscale-50 grayscale transition-all"
         />
       </div>
     </div>
@@ -170,16 +170,17 @@ const sortedExperiences = experiences.sort((a, b) => {
     </div>
     <div class="grid grid-cols-1 px-4 sm:px-24 md:px-0 md:grid-cols-2 gap-8">
       {
-        featured.map((project: any) => (
+        featured.map((project: any, index) => (
           <ProjectCard
             project={project.data}
             href={`/projects/${project.id}`}
+            itemNumber={index + 1}
           />
         ))
       }
     </div>
   </div>
-  <div class="mb-24">
+  <div class="mb-12">
     <div
       class="sm:flex flex-row justify-between items-center gap-8 mb-12 text-text"
     >
@@ -222,15 +223,9 @@ const sortedExperiences = experiences.sort((a, b) => {
       }
     </div>
   </div>
+  <div class="mb-12">
+    <p class="text-text-secondary text-center font-sans">
+      Thanks for stopping by - more to come.
+    </p>
+  </div>
 </BaseLayout>
-
-<style>
-  .img-outline {
-    filter: grayscale(100%);
-  }
-
-  /*drop-shadow(4px 0px 0px var(--color-bg))
-    drop-shadow(-4px 0px 0px var(--color-bg))
-    drop-shadow(0px 4px 0px var(--color-bg))
-    drop-shadow(0px -4px 0px var(--color-bg));*/
-</style>
