@@ -34,7 +34,6 @@ export default function Carousel({
 
   // Advance carousel every 5 seconds
   useEffect(() => {
-    // Future Improvement: save delay on pause and then use that when resuming
     if (paused) return;
     const interval = setInterval(() => {
       setCurrent((i) => (i + 1) % images.length);
@@ -45,21 +44,46 @@ export default function Carousel({
 
   return (
     <div
-      className={`relative w-full h-full overflow-hidden rounded-xl ${grayscale ? 'bg-gray-500' : 'bg-bg'}`}
+      className={`relative w-full h-full overflow-hidden rounded-xl ${
+        grayscale ? 'bg-gray-500' : 'bg-bg'
+      }`}
     >
-      {imageUrls.map((url, i) => (
-        <img
-          key={i}
-          src={url}
-          alt={`Carousel ${i + 1}`}
-          onClick={handlePause}
-          className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 ${
-            grayscale && 'grayscale'
-          } select-none ${
-            i === current ? 'opacity-100 z-10' : 'opacity-0 z-0'
-          }`}
-        />
-      ))}
+      {/* Backgrounds Layer */}
+      {!grayscale && (
+        <div className="absolute inset-0 z-0 pointer-events-none">
+          {imageUrls.map((url, i) => (
+            <img
+              key={`bg-${i}`}
+              src={url}
+              aria-hidden="true"
+              className={`absolute inset-0 w-full h-full object-cover blur-xl scale-110 opacity-50 select-none ${
+                grayscale ? 'grayscale' : ''
+              } ${i === current ? 'block' : 'hidden'}`}
+            />
+          ))}
+        </div>
+      )}
+
+      {/* Foregrounds Layer */}
+      <div className="absolute inset-0 z-10">
+        {imageUrls.map((url, i) => (
+          <img
+            key={`fg-${i}`}
+            src={url}
+            alt={`Carousel ${i + 1}`}
+            onClick={handlePause}
+            className={`absolute inset-0 w-full h-full object-contain select-none transition-opacity duration-500 ${
+              grayscale ? 'grayscale' : ''
+            } ${
+              i === current
+                ? 'opacity-100 pointer-events-auto cursor-pointer'
+                : 'opacity-0 pointer-events-none'
+            }`}
+          />
+        ))}
+      </div>
+
+      {/* Pagination Indicators */}
       <div className="absolute bottom-2 left-1/2 -translate-x-1/2 flex gap-2 z-20 bg-bg/80 p-1 rounded-full">
         {images.map((_, i) => (
           <button
@@ -72,6 +96,8 @@ export default function Carousel({
           />
         ))}
       </div>
+
+      {/* Navigation Arrows */}
       {stationary && (
         <>
           <div
@@ -114,6 +140,8 @@ export default function Carousel({
           </div>
         </>
       )}
+
+      {/* Play/Pause Button */}
       {paused && !stationary && (
         <div
           onClick={() => setPaused(false)}
