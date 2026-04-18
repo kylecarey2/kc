@@ -1,0 +1,48 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { getCollection } from 'astro:content';
+const allPosts = await getCollection('blogs');
+
+const posts = allPosts.sort(
+  (a, b) => new Date(b.data.date).getTime() - new Date(a.data.date).getTime(),
+);
+
+const months = [
+  'January',
+  'February',
+  'March',
+  'April',
+  'May',
+  'June',
+  'July',
+  'August',
+  'September',
+  'October',
+  'November',
+  'December',
+];
+
+---
+
+<BaseLayout title="Blogs">
+  <div class="mb-12">
+    <h1 class="text-text text-5xl mb-4">Blog Posts</h1>
+    <p class="pr-8 sm:pr-0 sm:w-xl text-text-secondary font-sans">
+      Check out my blog posts below.
+    </p>
+  </div>
+  <div class="mb-12 card flex flex-col gap-4">
+    {
+      posts.map((post) => (
+      <a href={`/blogs/${post.id}`} class="flex flex-row items-center justify-between rounded-lg bg-bg p-4 cursor-pointer hover:bg-bg/80 transition-colors">
+          <div class="flex flex-row items-center gap-2">
+            <h2 class="text-text text-2xl mb-2">{post.data.title}</h2>
+            <span class="hidden md:block text-text-secondary font-sans">&gt;</span>
+            <p class="hidden md:block text-text-secondary font-sans">{post.data.description}</p>
+          </div>
+          <p class="text-text-secondary font-sans">{months[post.data.date.getMonth()]} {post.data.date.getDate()}, {post.data.date.getFullYear()}</p>
+        </a>
+      ))
+    }
+  </div>
+</BaseLayout>

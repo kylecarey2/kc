@@ -1,0 +1,101 @@
+---
+import { getCollection, render } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Tag from '../../components/Tag.astro';
+import '../../styles/article.css';
+
+export async function getStaticPaths() {
+  const blogEntries = await getCollection('blogs');
+  return blogEntries.map((entry) => ({
+    params: { slug: entry.id },
+    props: { entry },
+  }));
+}
+
+const { entry } = Astro.props;
+const { Content } = await render(entry);
+
+const months = [
+  'January',
+  'February',
+  'March',
+  'April',
+  'May',
+  'June',
+  'July',
+  'August',
+  'September',
+  'October',
+  'November',
+  'December',
+];
+const formattedDate = `${months[entry.data.date.getMonth()]} ${entry.data.date.getDate()}, ${entry.data.date.getFullYear()}`;
+---
+
+<BaseLayout title={entry.data.title}>
+  <div class="mb-4 border-b-2 border-border">
+    <div class="sm:flex flex-row justify-between items-center mb-4">
+      <div class="flex flex-row mb-2 justify-end sm:hidden">
+        <a
+          href="/blogs"
+          class="text-primary hover:text-secondary transition-all underline"
+        >
+          <div
+            class="flex items-center gap-2 hover:gap-3 transition-all select-none"
+          >
+            <span>All Blogs</span>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke-width="1.5"
+              stroke="currentColor"
+              class="size-4"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3"></path>
+            </svg>
+          </div>
+        </a>
+      </div>
+
+      <h1 class="text-text text-5xl">{entry.data.title}</h1>
+      <a
+        href="/blogs"
+        class="hidden sm:block text-primary hover:text-secondary transition-all underline"
+      >
+        <div
+          class="flex items-center gap-2 hover:gap-3 transition-all select-none"
+        >
+          <span>All Blogs</span>
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke-width="1.5"
+            stroke="currentColor"
+            class="size-4"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3"></path>
+          </svg>
+        </div>
+      </a>
+    </div>
+    <div class="mb-4">
+      <p class="text-text-secondary text-lg font-sans mb-4">{formattedDate}</p>
+      <div class="flex flex-row justify-between gap-2 items-center">
+        <div class="flex flex-row overflow-auto gap-2 items-center">
+          {entry.data.tags.map((tag) => <Tag text={tag} />)}
+        </div>
+      </div>
+    </div>
+  </div>
+  <article class="text-text-secondary font-sans mb-12">
+    <Content />
+  </article>
+</BaseLayout>

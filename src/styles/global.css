@@ -37,3 +37,7 @@
 .font-sans {
   font-family: 'Source Serif 4', sans-serif;
 }
+
+.card {
+  @apply rounded-xl border border-border bg-bg-secondary p-6;
+}
