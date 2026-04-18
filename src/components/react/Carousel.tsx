@@ -28,7 +28,10 @@ export default function Carousel({
   });
 
   const handlePause = () => {
-    if (stationary) return;
+    if (stationary) {
+      next();
+      return;
+    }
     setPaused((prev) => !prev);
   };
 

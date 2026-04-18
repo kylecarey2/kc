@@ -30,10 +30,10 @@ article {
     @apply w-lg mx-auto;
   }
   ul {
-    @apply list-disc pl-5;
+    @apply list-disc pl-5 mb-2;
   }
   ol {
-    @apply list-decimal pl-5;
+    @apply list-decimal pl-5 mb-2;
   }
   hr {
     @apply my-2;
