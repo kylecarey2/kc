@@ -1,6 +1,8 @@
 @reference 'tailwindcss';
 
 article {
+  color-scheme: dark;
+
   h1 {
     @apply text-4xl mb-2;
     color: var(--color-text);

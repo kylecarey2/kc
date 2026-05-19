@@ -103,6 +103,20 @@ const formattedDate = `${months[entry.data.date.getMonth()]} ${entry.data.date.g
         )
       }
       {
+        entry.data.release && (
+          <p class="text-text-secondary font-sans">
+            Download:{' '}
+            <a
+              href={entry.data.release}
+              target="_blank"
+              class="text-primary hover:text-secondary transition-colors underline"
+            >
+              {entry.data.release.split('//').pop()}
+            </a>
+          </p>
+        )
+      }
+      {
         entry.data.repo && (
           <p class="text-text-secondary font-sans mb-4">
             Repository:{' '}
