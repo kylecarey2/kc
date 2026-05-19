@@ -1,0 +1,69 @@
+---
+title: 'Kyte'
+description: 'Native, quick, snappy Markdown editor to quickly power your workflow'
+repo: 'https://github.com/kylecarey2/kyte'
+release: 'https://github.com/kylecarey2/kyte/releases'
+tags: ['rust', 'react', 'tauri']
+featured: true
+date: 2026-05-20
+---
+
+import PBCarousel from '../../components/react/PBCarousel.tsx';
+
+# About
+
+Kyte is a lightweight Markdown editor that I built to create a notes app I actually enjoyed using every day. I was frustrated with the default Windows notepad experience, but also did not want something overly bloated or feature-heavy like Obsidian. My goal with Kyte was to build something simple, fast, and distraction-free while still supporting powerful keyboard-first workflows.
+
+Kyte keeps notes local, plain-text, and easy to manage while maintaining a fast, native-feeling experience through a Rust backend powered by Tauri. You can download the latest release [here](https://github.com/kylecarey2/kyte/releases).
+
+<PBCarousel
+client:load
+images={[
+  '/images/projects/kyte/main.png',
+  '/images/projects/kyte/no-explorer.png',
+  '/images/projects/kyte/add-note.png',
+  '/images/projects/kyte/notification.png',
+]}
+/>
+
+# Process
+
+Kyte started as a personal productivity project during a period where I found myself constantly fighting against the software I used for taking notes. I wanted something that felt lightweight and responsive while still having the convenience features that make modern editors enjoyable to use.
+
+A major focus throughout development was flow. Nearly every action in Kyte can be performed through keyboard shortcuts so navigation and editing remain uninterrupted. I also wanted the application to feel native and responsive despite being built with web technologies, which led me to using [Tauri](https://v2.tauri.app/) with a Rust backend instead of Electron.
+
+## Editor
+
+The frontend is built with React and TypeScript and is responsible for the editor experience, workspace state, and keyboard-driven UI. Notes are stored locally as regular Markdown files inside the user's app-data directory, ensuring there is no lock-in or proprietary storage format.
+
+The editor supports live Markdown editing via [MDXEditor](https://mdxeditor.dev/), quick note navigation, task lists, and workspace management while maintaining a minimal and distraction-free UI. Since the application is designed around keyboard-first workflows, a large amount of effort went into shortcut handling and interaction design to keep common actions fast and accessible.
+
+## Search
+
+One of the main features I wanted in Kyte was fast global search across all notes without sacrificing responsiveness. To accomplish this, I implemented a native Rust-based inverted index using [Tantivy](https://github.com/quickwit-oss/tantivy).
+
+The indexing process runs in the background and continuously updates as notes change so search results remain effectively instant even with large note collections. Search queries typically return in under 15ms while typing, allowing full-note search to feel immediate and seamless.
+
+# Solution
+
+In the end, Kyte works by combining a React frontend with a Rust-powered Tauri backend to create a lightweight desktop Markdown editor that feels fast and native while remaining entirely local-first.
+
+Notes are stored as standard Markdown files on disk while the Rust backend handles file watching, indexing, native window behavior, and filesystem operations. A background indexing thread maintains the search index independently from the UI thread so editor responsiveness is never impacted during indexing or search operations.
+
+# Tech Stack
+
+### Backend
+
+- Tauri
+- Rust
+- Tantivy
+- notify
+- walkdir
+
+### Frontend
+
+- React
+- TypeScript
+- Vite
+- TailwindCSS
+- MDXEditor
