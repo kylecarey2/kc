@@ -1,0 +1,35 @@
+---
+title: 'Terminal Monopoly'
+description: 'Monopoly, written in the terminal.'
+repo: 'https://github.com/kylecarey2/terminal-monopoly'
+tags: ['c++', 'makefile']
+featured: false
+date: 2025-02-18
+---
+
+import PBCarousel from '../../components/react/PBCarousel.tsx';
+
+# About
+
+Terminal Monopoly was a project I created during my winter break after my first semester. This project was created for _Ohio University's ACM Club_'s break long project competition. This project earned me 2nd place in the underclassmen division. It has nearly all Monopoly features including buying/selling properties, upgrading properties, and Jail. There is also an interactive board interface in the terminal to easily keep track of the game.
+
+<PBCarousel
+  client:load
+  images={[
+    '/images/projects/terminal-monopoly/roll.png',
+    '/images/projects/terminal-monopoly/owe.png',
+    '/images/projects/terminal-monopoly/jail.png',
+  ]}
+/>
+
+# Issues and Solutions
+
+There were a few problems I had to figure out while writing this code. The biggest one was how I would display the board to the terminal in an interactive manner. I eventually created a system that would render the board as ASCII characters and refresh for every mood. This created a "live" feel to the game as you could see the piece move across the entire board. I was able to create some unique solutions to create a cohesive playing environment.
+
+This was the first time I had to create an application from scratch that there was no clear-cut way of doing it. There were many growing pains in this project. But, I learned a lot and felt like it did a good job of preparing me for my first internship I had.
+
+# What did I Learn?
+
+I learned a lot during this project like how to break up and modularize pieces of code and functionality. I also learned how to take big, abstract ideas and to break them down into smaller problems to solve one at a time.
+
+There's also plenty I learned **NOT** to do from this project. One such thing is "leaving the documentation for the end". Seriously, I can't even understand exactly what I was thinking when I was writing that code... so if you are able to- I'm impressed (I'm half joking, I could figure it out with enough time but had I wrote documentation at the time of writing it, then it would be much easier).
