@@ -42,7 +42,11 @@
   @apply rounded-xl border border-border bg-bg-secondary p-6;
 }
 
-/* Ensure the normal animating page stays underneath it */
-/*::view-transition-group(root) {
-  z-index: 49;
-}*/
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
