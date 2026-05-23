@@ -58,10 +58,13 @@ export default function Carousel({
             <img
               key={`bg-${i}`}
               src={url}
+              alt=""
               aria-hidden="true"
               className={`absolute inset-0 w-full h-full object-cover blur-xl scale-110 opacity-50 select-none ${
                 grayscale ? 'grayscale' : ''
               } ${i === current ? 'block' : 'hidden'}`}
+              loading="lazy"
+              decoding="async"
             />
           ))}
         </div>
@@ -82,6 +85,8 @@ export default function Carousel({
                 ? 'opacity-100 pointer-events-auto cursor-pointer'
                 : 'opacity-0 pointer-events-none'
             }`}
+            loading="lazy"
+            decoding="async"
           />
         ))}
       </div>

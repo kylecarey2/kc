@@ -5,7 +5,10 @@ import Footer from '../components/Footer.astro';
 
 import { ClientRouter } from 'astro:transitions';
 
-const { title } = Astro.props;
+const {
+  title,
+  description = 'Kyle Carey portfolio: software engineering projects, and experience in AI, distributed systems, and web development.',
+} = Astro.props;
 const width = 'w-full px-4 sm:px-8 md:w-2xl md:px-0 lg:w-[932px] lg:px-0'; // edit this further by specifying different values for different screen sizes 928
 ---
 
@@ -16,6 +19,12 @@ const width = 'w-full px-4 sm:px-8 md:w-2xl md:px-0 lg:w-[932px] lg:px-0'; // ed
     <link rel="icon" href="/favicon.ico" />
     <meta name="viewport" content="width=device-width" />
     <meta name="generator" content={Astro.generator} />
+    <meta name="description" content={description} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
     <title>{title}</title>
     <ClientRouter />
   </head>

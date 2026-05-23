@@ -28,7 +28,10 @@ const sortedExperiences = experiences.sort((a, b) => {
 });
 ---
 
-<BaseLayout title="Kyle Carey">
+<BaseLayout
+  title="Kyle Carey"
+  description="Kyle Carey portfolio featuring software engineering projects, AI and distributed systems work, and internship experience."
+>
   <div class="flex flex-row justify-between gap-8 mb-24">
     <div class="pr-8 md:pr-0 flex-2 text-text">
       <h1 class="text-5xl mb-4">
@@ -134,6 +137,8 @@ const sortedExperiences = experiences.sort((a, b) => {
           src="/images/headshot.png"
           alt="Profile"
           class="scale-125 lg:scale-none lg:translate-y-8 select-none hover:grayscale-50 grayscale transition-all"
+          loading="eager"
+          decoding="async"
         />
       </div>
     </div>

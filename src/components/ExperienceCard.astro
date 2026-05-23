@@ -35,8 +35,12 @@ const endDateStr = endDate
 >
   <img
     src={image}
-    alt={company + 'logo'}
-    class="shrink-0 size-20 rounded-lg select-none"
+    alt={company + ' logo'}
+    width="80"
+    height="80"
+    class="shrink-0 size-20 rounded-lg select-none object-cover"
+    loading="lazy"
+    decoding="async"
   />
   <div class="min-w-0 flex flex-col gap-1">
     <h3 class="text-xl font-semibold">{company}</h3>

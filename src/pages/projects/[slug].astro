@@ -32,7 +32,7 @@ const months = [
 const formattedDate = `${months[entry.data.date.getMonth()]} ${entry.data.date.getFullYear()}`;
 ---
 
-<BaseLayout title={entry.data.title}>
+<BaseLayout title={entry.data.title} description={entry.data.description}>
   <div class="mb-4 border-b-2 border-border">
     <div class="sm:flex flex-row justify-between items-center mb-4">
       <div class="flex flex-row mb-2 justify-end sm:hidden">
