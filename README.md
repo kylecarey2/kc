@@ -1,43 +1,50 @@
-# Astro Starter Kit: Minimal
+# KC - Personal Portfolio
 
-```sh
-npm create astro@latest -- --template minimal
-```
+A fast, content-driven personal portfolio built with [Astro](https://astro.build/), TailwindCSS, MDX, and a small amount of React. This site is where I showcase my projects, experience, thoughts, and the things I am currently interested in building.
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+I built this portfolio to have a clean, simple, and performant home for my work without needing a heavy frontend framework for every page. Astro keeps the site mostly static, while still letting me use React where it actually makes sense.
 
-## 🚀 Project Structure
+# Demo
 
-Inside of your Astro project, you'll see the following folders and files:
+You can view the live site at: [kylecarey.com](https://kylecarey.com)
 
-```text
-/
-├── public/
-├── src/
-│   └── pages/
-│       └── index.astro
-└── package.json
-```
+# Features
 
-Astro looks for `.astro` or `.md` files in the `src/pages/` directory. Each page is exposed as a route based on its file name.
+- Static pages built with Astro
+- Project showcase pages
+- Experience timeline
+- MDX support for richer project writeups
+- React-powered image carousels
 
-There's nothing special about `src/components/`, but that's where we like to put any Astro/React/Vue/Svelte/Preact components.
+# How it Works
 
-Any static assets, like images, can be placed in the `public/` directory.
+The site is built around Astro pages and content collections. Projects, experiences, and blogs live in `src/content`, where each Markdown or MDX file provides frontmatter metadata and page content.
 
-## 🧞 Commands
+Astro uses that content to generate static routes for project and blog detail pages. Shared UI like project cards, tags, layouts, the navbar, and footer live in `src/components`. Most of the site is rendered as static HTML, with React only used for interactive components like the carousel.
 
-All commands are run from the root of the project, from a terminal:
+The base layout handles global structure, metadata, navigation, footer, and view transitions. Styling is handled with TailwindCSS and a custom theme defined in `src/styles/global.css`.
 
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `npm install`             | Installs dependencies                            |
-| `npm run dev`             | Starts local dev server at `localhost:4321`      |
-| `npm run build`           | Build your production site to `./dist/`          |
-| `npm run preview`         | Preview your build locally, before deploying     |
-| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `npm run astro -- --help` | Get help using the Astro CLI                     |
+# Tech Stack
 
-## 👀 Want to learn more?
+- Framework: Astro
+  - `@astrojs/mdx`
+  - `@astrojs/react`
+  - `@astrojs/sitemap`
+- Frontend: TypeScript + React
+- Styling: TailwindCSS
+  - `@tailwindcss/typography`
+- Content: Astro content collections with Markdown / MDX
 
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+# Content Management
+
+Content lives in it's respective `src/content` directory. The content files can either be Markdown or MDX, depending on if there needs to be interactivity or not on the page. Each section of content must follow the metadata that was described for it in `src/content.config.ts`. This utilizes Astro's powerful collection feature to display and render the content statically in HTML.
+
+# Why I Built This
+
+I wanted a portfolio that felt personal, fast, and easy to update.
+
+The goal was not to over-engineer it, but to build something clean that makes it easy to show the projects I care about. Astro was a good fit because most of the site is content-focused, but I can still add interactivity where it improves the experience.
+
+# License
+
+MIT License
