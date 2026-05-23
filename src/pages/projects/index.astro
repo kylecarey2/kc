@@ -2,6 +2,7 @@
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import ProjectCard from '../../components/ProjectCard.astro';
 import { getCollection } from 'astro:content';
+import { property } from 'astro:schema';
 
 const allProjects = await getCollection('projects');
 const projects = allProjects.sort(

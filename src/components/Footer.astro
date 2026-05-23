@@ -7,7 +7,7 @@ const { width } = Astro.props as Props;
 const year = new Date().getFullYear();
 ---
 
-<footer class={`px-0! sm:px-8 ${width}`}>
+<footer class={`px-0! sm:px-8 ${width}`} transition:persist>
   <div
     class="flex flex-row text-text justify-between items-center bg-bg-secondary rounded-t-xl py-8 px-4"
   >

@@ -3,6 +3,8 @@ import '../styles/global.css';
 import Navbar from '../components/Navbar.astro';
 import Footer from '../components/Footer.astro';
 
+import { ClientRouter } from 'astro:transitions';
+
 const { title } = Astro.props;
 const width = 'w-full px-4 sm:px-8 md:w-2xl md:px-0 lg:w-[932px] lg:px-0'; // edit this further by specifying different values for different screen sizes 928
 ---
@@ -15,6 +17,7 @@ const width = 'w-full px-4 sm:px-8 md:w-2xl md:px-0 lg:w-[932px] lg:px-0'; // ed
     <meta name="viewport" content="width=device-width" />
     <meta name="generator" content={Astro.generator} />
     <title>{title}</title>
+    <ClientRouter />
   </head>
   <body class="bg-bg min-h-screen flex flex-col items-center">
     <Navbar width={width} />

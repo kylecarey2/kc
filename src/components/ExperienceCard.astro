@@ -29,7 +29,10 @@ const endDateStr = endDate
   : 'Present';
 ---
 
-<div class="w-72 mb-2 flex flex-row items-center gap-4 text-text">
+<div
+  class="w-72 mb-2 flex flex-row items-center gap-4 text-text"
+  transition:name={`experience-${company}`}
+>
   <img
     src={image}
     alt={company + 'logo'}

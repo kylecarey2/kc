@@ -41,3 +41,8 @@
 .card {
   @apply rounded-xl border border-border bg-bg-secondary p-6;
 }
+
+/* Ensure the normal animating page stays underneath it */
+/*::view-transition-group(root) {
+  z-index: 49;
+}*/
