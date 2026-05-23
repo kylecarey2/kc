@@ -27,7 +27,7 @@ const projects = allProjects.sort(
   <div class="flex flex-wrap justify-center gap-4 mb-12">
     {
       projects.map((project, index) => (
-        <div class="w-md flex">
+        <div class="w-full max-w-md min-w-0 flex">
           <ProjectCard
             project={project.data}
             href={`/projects/${project.id}`}
