@@ -31,8 +31,7 @@ export default function SongCard() {
     } catch (e) {
       // fallback to something like kyle is an idiot
       const data: SpotifyData = {
-        SongName:
-          'Kyle is an Idiot super long titel that will surely cause problems',
+        SongName: 'Kyle is an Idiot',
         SongArtists: ['Kyle Carey'],
         Album: 'Uh Oh',
         AlbumArt: '/images/uh-oh.png',
@@ -104,7 +103,7 @@ export default function SongCard() {
         <img
           src={currentSong?.AlbumArt}
           alt={currentSong?.Album}
-          className="w-72 sm:size-28 shrink-0 rounded-2xl select-none"
+          className={`w-96 sm:size-28 shrink-0 rounded-2xl select-none ${!currentSong?.Playing && 'opacity-50s'}`}
         />
         <div className="w-full min-w-0 flex-1">
           <div className="relative min-w-0">
@@ -122,6 +121,7 @@ export default function SongCard() {
           <ProgressBar
             progress={currentSong?.Progress ?? 0}
             duration={currentSong?.Duration ?? 0}
+            playing={currentSong?.Playing ?? false}
           />
         </div>
       </div>
