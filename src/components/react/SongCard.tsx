@@ -31,7 +31,7 @@ export default function SongCard() {
     } catch (e) {
       // fallback to something like kyle is an idiot
       const data: SpotifyData = {
-        SongName: 'Kyle is an Idiot asd a sdfd f sdfafs fs asfd dsfa s fdfd s',
+        SongName: 'Kyle is an Idiot',
         SongArtists: ['Kyle Carey'],
         Album: 'Uh Oh',
         AlbumArt: '/images/uh-oh.png',
