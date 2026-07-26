@@ -5,6 +5,7 @@ import ExperienceCard from '../components/ExperienceCard.astro';
 import GradientOrbs from '../components/GradientOrbs.astro';
 
 import { getCollection } from 'astro:content';
+import SongCard from '../components/react/SongCard';
 
 const allProjects = await getCollection('projects');
 const featured = allProjects.filter((p: any) => p.data.featured);
@@ -228,6 +229,14 @@ const sortedExperiences = experiences.sort((a, b) => {
           />
         ))
       }
+    </div>
+  </div>
+  <hr class="text-bg-secondary mb-12 rounded-xl" />
+  <div class="mb-12">
+    <div class="flex flex-row justify-center">
+      <div class="w-96 sm:w-xl">
+        <SongCard client:idle />
+      </div>
     </div>
   </div>
   <div class="mb-12">
