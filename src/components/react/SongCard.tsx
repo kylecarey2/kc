@@ -24,7 +24,7 @@ export default function SongCard() {
     try {
       const response = await fetch('https://api.kygle.xyz/api/song');
       const data: SpotifyData = await response.json();
-      console.log(data);
+      // console.log(data);
 
       setCurrentSong(data);
       setLastSyncedAt(Date.now());

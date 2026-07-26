@@ -1,5 +1,5 @@
 {
-  "name": "",
+  "name": "kylecarey.com",
   "type": "module",
   "version": "0.0.1",
   "engines": {
@@ -16,21 +16,18 @@
     "@astrojs/mdx": "^7.0.0",
     "@astrojs/react": "^6.0.0",
     "@astrojs/sitemap": "^3.7.3",
-    "@tailwindcss/vite": "^4.2.2",
+    "@tailwindcss/vite": "^4.3.3",
     "@types/react": "^19.2.14",
     "@types/react-dom": "^19.2.3",
     "astro": "^7.0.0",
     "react": "^19.2.5",
     "react-dom": "^19.2.5",
-    "tailwindcss": "^4.2.2",
+    "tailwindcss": "^4.3.3",
     "typescript": "^5.9.3"
   },
   "devDependencies": {
     "@tailwindcss/typography": "^0.5.19",
     "prettier": "^3.8.1",
     "prettier-plugin-astro": "^0.14.1"
-  },
-  "overrides": {
-    "vite": "^7"
   }
 }
