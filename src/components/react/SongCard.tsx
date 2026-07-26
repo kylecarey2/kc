@@ -1,4 +1,5 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback, useRef } from 'react';
+import ProgressBar from './ProgressBar';
 
 interface SpotifyData {
   SongName: string;
@@ -12,18 +13,26 @@ interface SpotifyData {
 
 export default function SongCard() {
   const [currentSong, setCurrentSong] = useState<SpotifyData>();
+  const [lastSyncedAt, setLastSyncedAt] = useState(0);
+  const requestInFlight = useRef(false);
 
-  const makeRequest = async () => {
+  const makeRequest = useCallback(async () => {
+    if (requestInFlight.current) return;
+
+    requestInFlight.current = true;
+
     try {
-      const response = await fetch('http://localhost:8081/api/song');
+      const response = await fetch('https://api.kygle.xyz/api/song');
       const data: SpotifyData = await response.json();
       console.log(data);
 
       setCurrentSong(data);
+      setLastSyncedAt(Date.now());
     } catch (e) {
       // fallback to something like kyle is an idiot
       const data: SpotifyData = {
-        SongName: 'Kyle is an Idiot',
+        SongName:
+          'Kyle is an Idiot super long titel that will surely cause problems',
         SongArtists: ['Kyle Carey'],
         Album: 'Uh Oh',
         AlbumArt: '/images/uh-oh.png',
@@ -32,25 +41,30 @@ export default function SongCard() {
         Playing: false,
       };
       setCurrentSong(data);
+      setLastSyncedAt(Date.now());
       console.error(e);
+    } finally {
+      requestInFlight.current = false;
     }
-  };
-
-  useEffect(() => {
-    makeRequest();
   }, []);
 
   useEffect(() => {
-    if (!currentSong?.Playing) return;
+    makeRequest();
+  }, [makeRequest]);
 
-    const timeRemaining = currentSong.Duration - currentSong.Progress;
+  useEffect(() => {
+    if (!currentSong || !lastSyncedAt) return;
+
+    const timeRemaining = currentSong.Playing
+      ? Math.max(currentSong.Duration - currentSong.Progress + 500, 5000)
+      : 60000;
 
     const timeout = setTimeout(() => {
-      makeRequest(); // fetch the next song
-    }, timeRemaining); // small buffer
+      makeRequest();
+    }, timeRemaining);
 
     return () => clearTimeout(timeout);
-  }, [currentSong]);
+  }, [currentSong?.Playing, currentSong?.Duration, lastSyncedAt, makeRequest]);
 
   useEffect(() => {
     if (!currentSong?.Playing) return;
@@ -59,39 +73,47 @@ export default function SongCard() {
       setCurrentSong((prev) => {
         if (!prev) return prev;
 
+        if (prev.Progress >= prev.Duration) return prev;
+
         return {
           ...prev,
-          Progress: Math.min(prev.Progress + 1000, prev.Duration),
+          Progress: Math.min(prev.Progress + 100, prev.Duration),
         };
       });
-    }, 1000);
+    }, 100);
 
     return () => clearInterval(interval);
   }, [currentSong?.Playing]);
 
+  const artistText = currentSong?.SongArtists.join(', ');
+
   return (
-    <div className="font-sans">
-      <h1>{currentSong?.SongName}</h1>
-      <h1>{currentSong?.Album}</h1>
-      <div className="flex flex-row gap-4">
-        {currentSong?.SongArtists.map((artist) => {
-          return <p key={artist}>{artist}</p>;
-        })}
+    <div className="max-w-full overflow-hidden p-4 bg-bg-secondary border-2 border-border rounded-2xl text-text">
+      <div className="flex flex-col sm:flex-row items-center gap-4 min-w-0">
+        <img
+          src={currentSong?.AlbumArt}
+          alt={currentSong?.Album}
+          className="w-72 sm:size-28 shrink-0 rounded-2xl select-none"
+        />
+        <div className="w-full min-w-0 flex-1">
+          <div className="relative min-w-0">
+            <h1 className="no-scrollbar overflow-x-auto whitespace-nowrap pr-10 text-2xl">
+              {currentSong?.SongName}
+            </h1>
+            <div className="pointer-events-none absolute inset-y-0 right-0 w-10 bg-linear-to-l from-bg-secondary from-50% to-transparent" />
+          </div>
+          <div className="relative min-w-0 mb-2">
+            <p className="no-scrollbar overflow-x-auto whitespace-nowrap pr-10 font-sans text-text-secondary text-lg">
+              {artistText}
+            </p>
+            <div className="pointer-events-none absolute inset-y-0 right-0 w-10 bg-linear-to-l from-bg-secondary from-50% to-transparent" />
+          </div>
+          <ProgressBar
+            progress={currentSong?.Progress ?? 0}
+            duration={currentSong?.Duration ?? 0}
+          />
+        </div>
       </div>
-      <div className="flex flex-row gap-2">
-        <p>{formatTime(currentSong?.Progress ?? 0)}</p>
-        <p>/</p>
-        <p>{formatTime(currentSong?.Duration ?? 0)}</p>
-      </div>
-      <img src={currentSong?.AlbumArt} className="size-56 rounded-2xl" />
     </div>
   );
-}
-
-function formatTime(time: number): string {
-  const totalSeconds = Math.floor(time / 1000);
-  const minutes = Math.floor(totalSeconds / 60);
-  const seconds = totalSeconds % 60;
-
-  return `${minutes}:${seconds.toString().padStart(2, '0')}`;
 }
