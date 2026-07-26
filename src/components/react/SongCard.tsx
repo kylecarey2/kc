@@ -31,12 +31,12 @@ export default function SongCard() {
     } catch (e) {
       // fallback to something like kyle is an idiot
       const data: SpotifyData = {
-        SongName: 'Kyle is an Idiot',
+        SongName: 'Kyle is an Idiot asd a sdfd f sdfafs fs asfd dsfa s fdfd s',
         SongArtists: ['Kyle Carey'],
         Album: 'Uh Oh',
         AlbumArt: '/images/uh-oh.png',
         Progress: 0,
-        Duration: 1000,
+        Duration: 0,
         Playing: false,
       };
       setCurrentSong(data);
@@ -98,7 +98,7 @@ export default function SongCard() {
   const artistText = currentSong?.SongArtists.join(', ');
 
   return (
-    <div className="max-w-full overflow-hidden p-4 bg-bg-secondary border-2 border-border rounded-2xl text-text">
+    <div className="relative max-w-full overflow-hidden p-4 bg-bg-secondary border-2 border-border rounded-2xl text-text">
       <div className="flex flex-col sm:flex-row items-center gap-4 min-w-0">
         <img
           src={currentSong?.AlbumArt}
@@ -106,11 +106,39 @@ export default function SongCard() {
           className={`w-96 sm:size-28 shrink-0 rounded-2xl select-none ${!currentSong?.Playing && 'opacity-50s'}`}
         />
         <div className="w-full min-w-0 flex-1">
-          <div className="relative min-w-0">
-            <h1 className="no-scrollbar overflow-x-auto whitespace-nowrap pr-10 text-2xl">
-              {currentSong?.SongName}
-            </h1>
-            <div className="pointer-events-none absolute inset-y-0 right-0 w-10 bg-linear-to-l from-bg-secondary from-50% to-transparent" />
+          <div className="flex min-w-0 items-start gap-2">
+            <div className="relative min-w-0 flex-1">
+              <h1 className="no-scrollbar overflow-x-auto whitespace-nowrap pr-10 text-2xl">
+                {currentSong?.SongName}
+              </h1>
+              <div className="pointer-events-none absolute inset-y-0 right-0 w-10 bg-linear-to-l from-bg-secondary from-50% to-transparent" />
+            </div>
+            {/* Info */}
+            <div className="group relative z-20 mt-1 shrink-0">
+              <button
+                type="button"
+                aria-label="Currently listening to"
+                className="flex size-6 items-center justify-center text-xs font-sans text-text-secondary transition-colors hover:text-text"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  strokeWidth={1.5}
+                  stroke="currentColor"
+                  className="size-6"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    d="m11.25 11.25.041-.02a.75.75 0 0 1 1.063.852l-.708 2.836a.75.75 0 0 0 1.063.853l.041-.021M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9-3.75h.008v.008H12V8.25Z"
+                  />
+                </svg>
+              </button>
+              <div className="pointer-events-none absolute right-0 top-full mt-2 whitespace-nowrap rounded bg-bg p-2 font-sans text-xs text-text-secondary opacity-0 shadow-lg transition-opacity group-hover:opacity-100">
+                What I'm listening to on Spotify
+              </div>
+            </div>
           </div>
           <div className="relative min-w-0 mb-2">
             <p className="no-scrollbar overflow-x-auto whitespace-nowrap pr-10 font-sans text-text-secondary text-lg">

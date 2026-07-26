@@ -20,7 +20,7 @@ export default function ProgressBar({
   const remainingSeconds = Math.max(durationSeconds - elapsedSeconds, 0);
 
   return (
-    <div className="w-full">
+    <div className="w-full select-none">
       {/* Time labels */}
       <div
         className={`mb-2 flex items-center justify-between font-sans text-sm ${!playing && 'text-text-secondary'}`}
