@@ -16,7 +16,7 @@ export default function SongCard() {
   const [lastSyncedAt, setLastSyncedAt] = useState(0);
   const requestInFlight = useRef(false);
 
-  const makeRequest = useCallback(async () => {
+  const getSong = useCallback(async () => {
     if (requestInFlight.current) return;
 
     requestInFlight.current = true;
@@ -49,8 +49,19 @@ export default function SongCard() {
   }, []);
 
   useEffect(() => {
-    makeRequest();
-  }, [makeRequest]);
+    getSong();
+
+    const handleVisibilityChange = () => {
+      if (document.visibilityState === 'visible') {
+        getSong();
+      }
+    };
+
+    window.addEventListener('visibilitychange', handleVisibilityChange);
+
+    return () =>
+      window.removeEventListener('visibilitychange', handleVisibilityChange);
+  }, [getSong]);
 
   useEffect(() => {
     if (!currentSong || !lastSyncedAt) return;
@@ -60,11 +71,11 @@ export default function SongCard() {
       : 60000;
 
     const timeout = setTimeout(() => {
-      makeRequest();
+      getSong();
     }, timeRemaining);
 
     return () => clearTimeout(timeout);
-  }, [currentSong?.Playing, currentSong?.Duration, lastSyncedAt, makeRequest]);
+  }, [currentSong?.Playing, currentSong?.Duration, lastSyncedAt, getSong]);
 
   useEffect(() => {
     if (!currentSong?.Playing) return;
