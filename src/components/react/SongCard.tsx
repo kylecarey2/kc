@@ -14,6 +14,7 @@ interface SpotifyData {
 export default function SongCard() {
   const [currentSong, setCurrentSong] = useState<SpotifyData>();
   const [lastSyncedAt, setLastSyncedAt] = useState(0);
+  const [infoOpen, setInfoOpen] = useState(false);
   const requestInFlight = useRef(false);
 
   const getSong = useCallback(async () => {
@@ -97,6 +98,12 @@ export default function SongCard() {
 
   const artistText = currentSong?.SongArtists.join(', ');
 
+  const handleInfoClick = () => {
+    if (!window.matchMedia('(max-width: 639px)').matches) return;
+
+    setInfoOpen((open) => !open);
+  };
+
   return (
     <div className="relative max-w-full overflow-hidden p-4 bg-bg-secondary border-2 border-border rounded-2xl text-text">
       <div className="flex flex-col sm:flex-row items-center gap-4 min-w-0">
@@ -118,6 +125,8 @@ export default function SongCard() {
               <button
                 type="button"
                 aria-label="Currently listening to"
+                aria-expanded={infoOpen}
+                onClick={handleInfoClick}
                 className="flex size-6 items-center justify-center text-xs font-sans text-text-secondary transition-colors hover:text-text"
               >
                 <svg
@@ -135,7 +144,11 @@ export default function SongCard() {
                   />
                 </svg>
               </button>
-              <div className="pointer-events-none absolute right-0 top-full mt-2 whitespace-nowrap rounded bg-bg p-2 font-sans text-xs text-text-secondary opacity-0 shadow-lg transition-opacity group-hover:opacity-100">
+              <div
+                className={`pointer-events-none absolute right-0 top-full mt-2 whitespace-nowrap rounded bg-bg p-2 font-sans text-xs text-text-secondary shadow-lg transition-opacity sm:opacity-0 sm:group-hover:opacity-100 ${
+                  infoOpen ? 'opacity-100' : 'opacity-0'
+                }`}
+              >
                 What I'm listening to on Spotify
               </div>
             </div>

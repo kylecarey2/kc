@@ -37,7 +37,7 @@ export default function ProgressBar({
         className={`relative h-2 w-full rounded-full bg-linear-to-r from-primary to-secondary ${!playing && 'grayscale-50'}`}
       >
         <div
-          className={`absolute top-0 right-0 h-full ${elapsedSeconds && playing ? 'rounded-r-full' : 'rounded-full'} bg-bg transition-all`}
+          className={`absolute top-0 right-0 h-full ${elapsedSeconds ? 'rounded-r-full' : 'rounded-full'} bg-bg transition-all`}
           style={{ width: `${100 - percent}%` }}
         />
       </div>
