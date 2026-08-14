@@ -4,6 +4,8 @@ import ProjectCard from '../components/ProjectCard.astro';
 import ExperienceCard from '../components/ExperienceCard.astro';
 import GradientOrbs from '../components/GradientOrbs.astro';
 
+import { Image } from 'astro:assets';
+import headshotImg from '../assets/images/headshot.png';
 import { getCollection } from 'astro:content';
 import SongCard from '../components/react/SongCard';
 
@@ -134,12 +136,12 @@ const sortedExperiences = experiences.sort((a, b) => {
     >
       <GradientOrbs />
       <div class="absolute inset-0 flex items-end justify-center">
-        <img
-          src="/images/headshot.png"
+        <Image
+          src={headshotImg}
           alt="Profile"
+          width={400}
+          fetchpriority="high"
           class="scale-125 lg:scale-none lg:translate-y-8 select-none hover:grayscale-50 grayscale transition-all"
-          loading="eager"
-          decoding="async"
         />
       </div>
     </div>
