@@ -51,4 +51,44 @@ article {
       background-color: var(--color-text-muted);
     }
   }
+  table {
+    @apply mx-auto my-4 w-full max-w-3xl text-left;
+    border-collapse: collapse;
+    table-layout: auto;
+  }
+  thead {
+    @apply border-b font-bold;
+    border-color: var(--color-border);
+  }
+  th {
+    @apply px-3 py-2 font-medium whitespace-nowrap;
+    color: var(--color-text);
+  }
+  td {
+    @apply px-3 py-2;
+    color: var(--color-text);
+  }
+  tbody tr {
+    @apply border-b;
+    border-color: var(--color-border);
+  }
+  tbody tr:last-child {
+    border-bottom: none;
+  }
+  /* Wrapper div for table scroll - added via script */
+  .table-wrapper {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    margin: 1rem auto;
+    max-width: 100%;
+  }
+  @media (max-width: 48rem) {
+    table {
+      margin-left: 0;
+      margin-right: 0;
+    }
+  }
+  video {
+    @apply w-full sm:w-lg md:w-xl aspect-video rounded-xl mx-auto mb-2;
+  }
 }

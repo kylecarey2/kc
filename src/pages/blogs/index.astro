@@ -36,20 +36,25 @@ const months = [
         {posts.map((post) => (
           <a
             href={`/blogs/${post.id}`}
-            class="flex flex-row items-center justify-between rounded-lg bg-bg p-4 cursor-pointer hover:bg-bg/80 transition-colors"
+            class="rounded-lg bg-bg p-4 cursor-pointer hover:bg-bg/80 transition-colors"
           >
-            <div class="flex flex-row items-center gap-2">
-              <h2 class="text-text text-2xl mb-2">{post.data.title}</h2>
-              <span class="hidden md:block text-text-secondary font-sans">
-                &gt;
-              </span>
-              <p class="hidden md:block text-text-secondary font-sans">
-                {post.data.description}
+            <div class="mb-2 flex flex-row gap-2 items-center justify-between">
+              <h2
+                class="text-text xs:text-xl sm:text-2xl"
+                transition:name={`blog-${post.data.title}`}
+              >
+                {post.data.title}
+              </h2>
+              <p class="hidden sm:block text-text-secondary font-sans">
+                {months[post.data.date.getMonth()]} {post.data.date.getDate()},{' '}
+                {post.data.date.getFullYear()}
+              </p>
+              <p class="sm:hidden text-text-secondary font-sans">
+                {post.data.date.getMonth() + 1}/{post.data.date.getFullYear()}
               </p>
             </div>
-            <p class="text-text-secondary font-sans">
-              {months[post.data.date.getMonth()]} {post.data.date.getDate()},{' '}
-              {post.data.date.getFullYear()}
+            <p class="hidden md:block text-text-secondary font-sans">
+              {post.data.description}
             </p>
           </a>
         ))}

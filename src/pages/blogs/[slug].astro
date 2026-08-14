@@ -34,8 +34,8 @@ const formattedDate = `${months[entry.data.date.getMonth()]} ${entry.data.date.g
 
 <BaseLayout title={entry.data.title} description={entry.data.description}>
   <div class="mb-4 border-b-2 border-border">
-    <div class="sm:flex flex-row justify-between items-center mb-4">
-      <div class="flex flex-row mb-2 justify-end sm:hidden">
+    <div class="lg:flex flex-row justify-between items-center mb-4">
+      <div class="flex flex-row mb-2 justify-end lg:hidden">
         <a
           href="/blogs"
           class="text-primary hover:text-secondary transition-all underline"
@@ -61,10 +61,15 @@ const formattedDate = `${months[entry.data.date.getMonth()]} ${entry.data.date.g
         </a>
       </div>
 
-      <h1 class="text-text text-5xl">{entry.data.title}</h1>
+      <h1
+        class="text-text text-5xl"
+        transition:name={`blog-${entry.data.title}`}
+      >
+        {entry.data.title}
+      </h1>
       <a
         href="/blogs"
-        class="hidden sm:block text-primary hover:text-secondary transition-all underline"
+        class="hidden lg:block text-primary hover:text-secondary transition-all underline"
       >
         <div
           class="flex items-center gap-2 hover:gap-3 transition-all select-none"
@@ -99,3 +104,18 @@ const formattedDate = `${months[entry.data.date.getMonth()]} ${entry.data.date.g
     <Content />
   </article>
 </BaseLayout>
+
+<script>
+  // Wrap tables in a scrollable div for mobile responsiveness
+  document.addEventListener('DOMContentLoaded', () => {
+    const tables = document.querySelectorAll('article table');
+    tables.forEach((table) => {
+      if (!table.parentElement?.classList.contains('table-wrapper')) {
+        const wrapper = document.createElement('div');
+        wrapper.className = 'table-wrapper';
+        table.parentNode?.insertBefore(wrapper, table);
+        wrapper.appendChild(table);
+      }
+    });
+  });
+</script>
