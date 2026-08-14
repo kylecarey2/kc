@@ -1,10 +1,13 @@
 ---
+import { Image } from 'astro:assets';
+import type { ImageMetadata } from 'astro';
+
 interface Props {
   company: string;
   position: string;
   startDate: Date;
   endDate?: Date;
-  image: string;
+  image: ImageMetadata;
 }
 
 const { company, position, startDate, endDate, image } = Astro.props;
@@ -33,14 +36,13 @@ const endDateStr = endDate
   class="w-72 mb-2 flex flex-row items-center gap-4 text-text"
   transition:name={`experience-${company}`}
 >
-  <img
+  <Image
     src={image}
     alt={company + ' logo'}
-    width="80"
-    height="80"
+    width={160}
+    height={160}
     class="shrink-0 size-20 rounded-lg select-none object-cover"
     loading="lazy"
-    decoding="async"
   />
   <div class="min-w-0 flex flex-col gap-1">
     <h3 class="text-xl font-semibold">{company}</h3>

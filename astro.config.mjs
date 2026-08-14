@@ -1,5 +1,5 @@
 // @ts-check
-import { defineConfig } from 'astro/config';
+import { defineConfig, fontProviders } from 'astro/config';
 
 import tailwindcss from '@tailwindcss/vite';
 
@@ -16,4 +16,27 @@ export default defineConfig({
   },
   site: 'https://kylecarey.com',
   integrations: [react(), mdx(), sitemap()],
+  fonts: [
+    {
+      name: 'Playfair Display',
+      cssVariable: '--font-playfair-display',
+      provider: fontProviders.google(),
+      weights: ['400 900'],
+      styles: ['normal', 'italic'],
+    },
+    {
+      name: 'Source Serif 4',
+      cssVariable: '--font-source-serif-4',
+      provider: fontProviders.google(),
+      weights: ['200 900'],
+      styles: ['normal', 'italic'],
+      options: {
+        experimental: {
+          variableAxis: {
+            opsz: [['8', '60']],
+          },
+        },
+      },
+    },
+  ],
 });

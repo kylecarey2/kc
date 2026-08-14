@@ -3,7 +3,7 @@ company: 'Western Reserve Group'
 position: 'Software Developer Intern'
 startDate: 2025-05-05
 endDate: 2025-08-15
-image: '/images/logos/wrg.png'
+image: './logos/wrg.png'
 ---
 
 - Developed a Blazor and .NET Entity Framework dashboard with CRUD functionality for account and role management across relational databases using DTOs
