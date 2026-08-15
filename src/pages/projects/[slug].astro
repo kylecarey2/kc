@@ -163,18 +163,3 @@ const formattedDate = `${months[entry.data.date.getMonth()]} ${entry.data.date.g
     <Content />
   </article>
 </BaseLayout>
-
-<script>
-  // Wrap tables in a scrollable div for mobile responsiveness
-  document.addEventListener('DOMContentLoaded', () => {
-    const tables = document.querySelectorAll('article table');
-    tables.forEach((table) => {
-      if (!table.parentElement?.classList.contains('table-wrapper')) {
-        const wrapper = document.createElement('div');
-        wrapper.className = 'table-wrapper';
-        table.parentNode?.insertBefore(wrapper, table);
-        wrapper.appendChild(table);
-      }
-    });
-  });
-</script>

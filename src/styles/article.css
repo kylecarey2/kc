@@ -75,13 +75,6 @@ article {
   tbody tr:last-child {
     border-bottom: none;
   }
-  /* Wrapper div for table scroll - added via script */
-  .table-wrapper {
-    overflow-x: auto;
-    -webkit-overflow-scrolling: touch;
-    margin: 1rem auto;
-    max-width: 100%;
-  }
   @media (max-width: 48rem) {
     table {
       margin-left: 0;

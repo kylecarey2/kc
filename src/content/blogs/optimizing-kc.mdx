@@ -25,10 +25,12 @@ I used Google's [PageSpeed](https://pagespeed.web.dev/) tool to measure the perf
 
 So, here are the site's initial values from [PageSpeed](https://pagespeed.web.dev/analysis/https-kylecarey-com/rg44d53a6g?form_factor=mobile):
 
-|         | FCP (s) | LCP (s) | CLS   | Speed Index (s) | Performance Score |
-| ------- | ------- | ------- | ----- | --------------- | ----------------- |
-| Desktop | 0.8s    | 1.0s    | 0.046 | 0.8s            | 98                |
-| Mobile  | 3.2s    | 5.3s    | 0     | 3.2s            | 74                |
+<div class='overflow-x-auto'>
+  |         | FCP (s) | LCP (s) | CLS   | Speed Index (s) | Performance Score |
+  | ------- | ------- | ------- | ----- | --------------- | ----------------- |
+  | Desktop | 0.8s    | 1.0s    | 0.046 | 0.8s            | 98                |
+  | Mobile  | 3.2s    | 5.3s    | 0     | 3.2s            | 74                |
+</div>
 
 Mobile is much worse, in terms of speed, but PageSpeed throttles the download speed on Mobile testing devices to be 1.64Mbps, which is intentional to simulate a consistent lab experience. The desktop download speed on PageSpeed is throttled at 10.24Mbps. For reference, the average 5G connection can download at ~310Mbps and a fiber connection is capable of 1,000Mbps. So, these download speeds can help diagnose issues that are not noticeable on the good connections I am fortunate enough to have.
 
@@ -110,25 +112,29 @@ Once again, Astro has a built in [solution](https://docs.astro.build/en/guides/i
 
 Here's some image before and after sizes:
 
-| Image     | Before (KB) | After (KB) | Reduction (%) |
-| --------- | ----------- | ---------- | ------------- |
-| WRG Logo  | 70KB        | 3KB        | 95.7%         |
-| Hudl Logo | 20KB        | 1KB        | 95.0%         |
-| OU Logo   | 31KB        | 1KB        | 96.8%         |
-| Headshot  | 516KB       | 10KB       | 98.1%         |
+<div class='overflow-x-auto'>
+  | Image     | Before (KB) | After (KB) | Reduction (%) |
+  | --------- | ----------- | ---------- | ------------- |
+  | WRG Logo  | 70KB        | 3KB        | 95.7%         |
+  | Hudl Logo | 20KB        | 1KB        | 95.0%         |
+  | OU Logo   | 31KB        | 1KB        | 96.8%         |
+  | Headshot  | 516KB       | 10KB       | 98.1%         |
+</div>
 
 ## Results
 
 All of these optimizations improved my PageSpeed performance scores from 74 to 96 on mobile and 98 to 100 on desktop. The changes resulted in a ~50% reduction in my website's LCP across both mobile and desktop. The largest improvement was in mobile's FCP, going from 3.2s to 0.8s, a 75% reduction. I also eliminated the CLS that was observed on desktop by optimizing the fonts. You can check out the PageSpeed results from [before](https://pagespeed.web.dev/analysis/https-kylecarey-com/rg44d53a6g?form_factor=mobile) and [after](https://pagespeed.web.dev/analysis/https-kylecarey-com/ibqjhah8dv?form_factor=mobile) by following those links (by the time you click them, there's a good chance my site looks a little different).
 
-|                     | Before | After | Improvement |
-| ------------------- | -----: | ----: | ----------: |
-| Mobile FCP          |   3.2s |  0.8s |         75% |
-| Mobile LCP          |   5.3s |  2.6s |         51% |
-| Desktop FCP         |   0.8s |  0.3s |         63% |
-| Desktop LCP         |   1.0s |  0.5s |         50% |
-| Mobile Performance  |     74 |    96 |         +22 |
-| Desktop Performance |     98 |   100 |          +2 |
+<div class='overflow-x-auto'>
+  |                     | Before | After | Improvement |
+  | ------------------- | -----: | ----: | ----------: |
+  | Mobile FCP          |   3.2s |  0.8s |         75% |
+  | Mobile LCP          |   5.3s |  2.6s |         51% |
+  | Desktop FCP         |   0.8s |  0.3s |         63% |
+  | Desktop LCP         |   1.0s |  0.5s |         50% |
+  | Mobile Performance  |     74 |    96 |         +22 |
+  | Desktop Performance |     98 |   100 |          +2 |
+</div>
 
 ### What I Learned
 
