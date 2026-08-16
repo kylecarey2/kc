@@ -178,12 +178,11 @@ const sortedExperiences = experiences.sort((a, b) => {
     </div>
     <div class="flex flex-wrap justify-center gap-4">
       {
-        featured.map((project: any, index) => (
+        featured.map((project: any) => (
           <div class="w-full max-w-md min-w-0 flex">
             <ProjectCard
               project={project.data}
               href={`/projects/${project.id}`}
-              itemNumber={index + 1}
             />
           </div>
         ))
