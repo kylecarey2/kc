@@ -82,9 +82,7 @@ const images = Object.keys(matches);
           </Card>
         </div>
       </div>
-      <div
-        class="hidden lg:block relative flex-1 border border-border rounded-xl overflow-hidden"
-      >
+      <div class="hidden lg:block relative flex-1 rounded-xl overflow-hidden">
         <GradientOrbs />
         <div class="absolute inset-0 flex items-center justify-center m-4">
           <Carousel client:load images={images} />
