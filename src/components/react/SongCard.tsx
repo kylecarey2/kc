@@ -110,6 +110,7 @@ export default function SongCard() {
         <img
           src={currentSong?.AlbumArt}
           alt={currentSong?.Album}
+          loading="lazy"
           className={`w-96 sm:size-28 shrink-0 rounded-2xl select-none ${!currentSong?.Playing && 'opacity-50s'}`}
         />
         <div className="w-full min-w-0 flex-1">
